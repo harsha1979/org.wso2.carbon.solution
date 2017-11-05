@@ -1,0 +1,91 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd"
+                  xmlns:xsd1="http://model.common.application.identity.carbon.wso2.org/xsd">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <xsd:createApplication>
+            <!--Optional:-->
+            <xsd:serviceProvider>
+                <!--Optional:-->
+                <!--Optional:-->
+                <xsd1:applicationID>5</xsd1:applicationID>
+                <xsd1:applicationName>XXXXX</xsd1:applicationName>
+
+                <!--Optional:-->
+                <xsd1:localAndOutBoundAuthenticationConfig>
+                    <!--Optional:-->
+                    <xsd1:alwaysSendBackAuthenticatedListOfIdPs>true</xsd1:alwaysSendBackAuthenticatedListOfIdPs>
+                    <!--Optional:-->
+                    <!--Optional:-->
+                    <!--Zero or more repetitions:-->
+                    <xsd1:authenticationSteps>
+                        <!--Optional:-->
+                        <xsd1:attributeStep>1</xsd1:attributeStep>
+                        <!--Zero or more repetitions:-->
+                        <xsd1:federatedIdentityProviders>
+                            <!--Optional:-->
+                            <xsd1:identityProviderName>dd</xsd1:identityProviderName>
+                            <xsd1:enable>false</xsd1:enable>
+                            <xsd1:primary>false</xsd1:primary>
+                            <xsd1:federationHub>false</xsd1:federationHub>
+                            <xsd1:defaultAuthenticatorConfig>
+                                <xsd1:alais/>
+                                <xsd1:certificate/>
+                                <xsd1:claimConfig/>
+                                <xsd1:displayName>samlsso</xsd1:displayName>
+                                <xsd1:enabled>false</xsd1:enabled>
+                                <xsd1:name>SAMLSSOAuthenticator</xsd1:name>
+                                <xsd1:valid>true</xsd1:valid>
+                            </xsd1:defaultAuthenticatorConfig>
+
+                            <!--Zero or more repetitions:-->
+                            <xsd1:federatedAuthenticatorConfigs>
+                                <xsd1:displayName>samlsso</xsd1:displayName>
+                                <xsd1:enabled>false</xsd1:enabled>
+                                <xsd1:name>SAMLSSOAuthenticator</xsd1:name>
+                                <xsd1:valid>true</xsd1:valid>
+                            </xsd1:federatedAuthenticatorConfigs>
+
+                        </xsd1:federatedIdentityProviders>
+                        <xsd1:localAuthenticatorConfigs>
+                            <!--Optional:-->
+                            <xsd1:displayName>basic</xsd1:displayName>
+                            <!--Optional:-->
+                            <xsd1:enabled>false</xsd1:enabled>
+                            <!--Optional:-->
+                            <xsd1:name>BasicAuthenticator</xsd1:name>
+                            <!--Zero or more repetitions:-->
+                            <!--Optional:-->
+                            <xsd1:valid>true</xsd1:valid>
+                        </xsd1:localAuthenticatorConfigs>
+                        <!--Optional:-->
+                        <xsd1:stepOrder>1</xsd1:stepOrder>
+                        <!--Optional:-->
+                        <xsd1:subjectStep>true</xsd1:subjectStep>
+                    </xsd1:authenticationSteps>
+                    <!--Optional:-->
+                    <xsd1:authenticationType>flow</xsd1:authenticationType>
+                    <!--Optional:-->
+                    <xsd1:enableAuthorization>false</xsd1:enableAuthorization>
+                    <!--Optional:-->
+                    <!--Optional:-->
+                    <xsd1:useTenantDomainInLocalSubjectIdentifier>false</xsd1:useTenantDomainInLocalSubjectIdentifier>
+                    <!--Optional:-->
+                    <xsd1:useUserstoreDomainInLocalSubjectIdentifier>false
+                    </xsd1:useUserstoreDomainInLocalSubjectIdentifier>
+                </xsd1:localAndOutBoundAuthenticationConfig>
+                <!--Optional:-->
+                <!--Optional:-->
+                <xsd1:owner>
+                    <!--Optional:-->
+                    <xsd1:tenantDomain>carbon.super</xsd1:tenantDomain>
+                    <!--Optional:-->
+                    <xsd1:userName>admin</xsd1:userName>
+                    <!--Optional:-->
+                    <xsd1:userStoreDomain>PRIMARY</xsd1:userStoreDomain>
+                </xsd1:owner>
+                <!--Optional:-->
+                <xsd1:saasApp>false</xsd1:saasApp>
+            </xsd:serviceProvider>
+        </xsd:createApplication>
+    </soapenv:Body>
+</soapenv:Envelope>

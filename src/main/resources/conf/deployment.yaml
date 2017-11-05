@@ -1,0 +1,33 @@
+serviceProvider:
+  id: 2342342
+  name: "AAAA"
+  description: "dsfdsfdsfds"
+  isSaasApp: false
+  inboundAuthenticationConfig:
+    inboundAuthenticationRequestConfigs:
+      -
+        friendlyName: "fdf"
+        inboundAuthKey: "df"
+        inboundAuthType: ""
+        inboundConfigType: ""
+        properties:
+          -
+            name: ""
+            value: ""
+            type: ""
+            advanced: ""
+            confidential: ""
+            defaultValue: ""
+            description: ""
+            displayName: ""
+            displayOrder: 1
+            isRequired: false
+      -
+        friendlyName: "aaaa"
+        inboundAuthKey: "df"
+        inboundAuthType: ""
+        inboundConfigType: ""
+  inboundProvisioningConfig:
+    isDumbMode: true
+    isProvisioningEnabled: false
+    provisioningUserStore: "AAAXXX"

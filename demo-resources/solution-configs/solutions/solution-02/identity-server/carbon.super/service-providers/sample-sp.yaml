@@ -1,0 +1,36 @@
+serviceProvider:
+  name: "AAAA"
+  description: "dsfdsfdsfds"
+  isSaasApp: true
+  inboundAuthenticationConfig:
+    inboundAuthenticationRequestConfigs:
+      -
+        friendlyName:
+        inboundAuthKey: ""
+        inboundAuthType: "passivests"
+        inboundConfigType:
+        properties:
+          -
+            name: ""
+            value: ""
+            type: ""
+            advanced: true
+            confidential: true
+            defaultValue: ""
+            description: ""
+            displayName: ""
+            displayOrder: 1
+            isRequired: false
+      -
+        friendlyName: "aaaa"
+        inboundAuthKey: "df"
+        inboundAuthType: ""
+        inboundConfigType: ""
+  inboundProvisioningConfig:
+    isDumbMode: true
+    isProvisioningEnabled: false
+    provisioningUserStore: "AAAXXX"
+  owner:
+    tenantDomain: ""
+    userName: ""
+    userStoreDomain: ""
