@@ -24,7 +24,7 @@ public class SolutionInstaller {
                     Installer installer = InstallerFactory.getInstance().getInstaller(server);
                     installer.install(solution);
                 } catch (CarbonSolutionException e) {
-                    e.printStackTrace();
+
                 }
             }
         }

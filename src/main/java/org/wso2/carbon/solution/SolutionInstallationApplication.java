@@ -21,7 +21,6 @@ public class SolutionInstallationApplication {
         try {
             Utility.setKeyStoreProperties();
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
         SolutionInstaller solutionInstaller = new SolutionInstaller();

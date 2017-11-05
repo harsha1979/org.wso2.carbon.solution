@@ -49,7 +49,7 @@ public class IdentityServerInstaller implements Installer {
                                 .getDeployer(Constant.Server.IDENTITY_SERVER, artifact);
                         deployer.deploy(artifactPath.toString(), defaultServer);
                     } catch (CarbonSolutionException e) {
-                        e.printStackTrace();
+
                     }
                 }
             } else {

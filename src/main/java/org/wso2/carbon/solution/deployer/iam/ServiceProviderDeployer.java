@@ -33,7 +33,6 @@ public class ServiceProviderDeployer implements Deployer {
         } catch (AxisFault axisFault) {
             axisFault.printStackTrace();
         } catch (AuthenticationException e) {
-            e.printStackTrace();
         }
     }
 
@@ -57,9 +56,7 @@ public class ServiceProviderDeployer implements Deployer {
                     stub.createApplication(serviceProvider_dest);
                 }
             } catch (RemoteException e) {
-                e.printStackTrace();
             } catch (IdentityApplicationManagementServiceIdentityApplicationManagementException e) {
-                e.printStackTrace();
             }
         }
     }
