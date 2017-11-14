@@ -20,6 +20,7 @@ public class Constant {
 
     public static class IdentityServer {
         public static final String SERVICE_PROVIDER = "service-providers";
+        public static final String IDENTITY_PROVIDER = "identity-providers";
     }
 
     public static class Tomcat {

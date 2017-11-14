@@ -13,6 +13,8 @@ public class IdentityServer implements Serializable {
     private String host;
     private int port;
     private String trustore;
+    private String userName;
+    private String password;
 
     /**
      * No args constructor for use in serialization
@@ -79,14 +81,32 @@ public class IdentityServer implements Serializable {
         this.trustore = trustore;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(port).append(host).append(instance).append(trustore).toHashCode();
+        return new HashCodeBuilder().append(port).append(host).append(instance).append(trustore).append(userName)
+                .append(password)
+                .toHashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("instance", instance).append("host", host).append("port", port)
-                .append("trustore", trustore).toString();
+                .append("trustore", trustore).append("userName",userName).append("password", password).toString();
     }
 }

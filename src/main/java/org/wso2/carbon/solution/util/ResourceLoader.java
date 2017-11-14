@@ -3,6 +3,7 @@ package org.wso2.carbon.solution.util;
 import org.wso2.carbon.config.ConfigProviderFactory;
 import org.wso2.carbon.config.ConfigurationException;
 import org.wso2.carbon.config.provider.ConfigProvider;
+import org.wso2.carbon.identity.application.common.model.xsd.IdentityProvider;
 import org.wso2.carbon.solution.CarbonSolutionException;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.introspector.BeanAccess;
@@ -37,25 +38,12 @@ public class ResourceLoader {
         return resourceMap;
     }
 
-    public static <T> T loadResourcde(Path resourcePath, Class<T> className) {
-
-        T parentConfiguration = null;
-        try {
-            ConfigProvider configProvider = ConfigProviderFactory.getConfigProvider(resourcePath, null);
-            parentConfiguration = configProvider
-                    .getConfigurationObject(className);
-            return parentConfiguration;
-        } catch (ConfigurationException e) {
-        }
-        return parentConfiguration;
-    }
-
     public static <T> T loadResource(Path resourcePath, Class<T> className) {
         T resource = null;
         try {
             Reader in = new InputStreamReader(Files.newInputStream(resourcePath), StandardCharsets.UTF_8);
             Yaml yaml = new Yaml();
-            yaml.setBeanAccess(BeanAccess.FIELD);
+            yaml.setBeanAccess(BeanAccess.PROPERTY);
             resource = yaml.loadAs(in, className);
             if (resource == null) {
                 throw new CarbonSolutionException("Provider is not loaded correctly.");
@@ -67,5 +55,13 @@ public class ResourceLoader {
             //throw new CarbonSolutionException(errorMessage, e);
         }
         return resource;
+    }
+
+    public static void main(String[] args){
+        IdentityProvider identityProvider = loadResource(
+                "sample1.yaml", "/home/harshat/wso2/demo-suite/project/org.wso2.carbon"
+                               + ".solution/src/main/resources/samples",
+                IdentityProvider.class);
+
     }
 }

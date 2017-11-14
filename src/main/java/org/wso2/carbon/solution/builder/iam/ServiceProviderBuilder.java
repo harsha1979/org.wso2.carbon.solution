@@ -10,6 +10,7 @@ import org.wso2.carbon.solution.model.iam.sp.RemoteClaim;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class ServiceProviderBuilder {
 
@@ -247,4 +248,10 @@ public class ServiceProviderBuilder {
         remoteClaim_dest.setClaimId(remoteClaim_source.getClaimId());
         remoteClaim_dest.setClaimUri(remoteClaim_source.getClaimUri());
     }
+
+    public static class SAMLApplicationBuilder{
+
+    }
+
 }
+

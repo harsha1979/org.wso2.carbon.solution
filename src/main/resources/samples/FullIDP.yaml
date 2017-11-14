@@ -1,0 +1,93 @@
+identityProvider:
+ alias: ""
+ certificate: ""
+ displayName: ""
+ isEnable: false
+ isPrimary: false
+ isFederationHub: false
+ homeRealmId: ""
+ identityProviderDescription: ""
+ identityProviderName: ""
+ provisioningRole: ""
+ claimConfig:
+  isAlwaysSendMappedLocalSubjectId: false
+  isLocalClaimDialect: false
+  roleClaimURI: ""
+  userClaimURI: ""
+  claimMappings:
+   -
+    isMandatory: false
+    defaultValue: ""
+    isRequested: false
+    localClaim:
+     claimId: 1
+     claimUri: ""
+    remoteClaim:
+     claimId: 1
+     claimUri: ""
+  idpClaims:
+   -
+    claimId: 1
+    claimUri: ""
+ federatedAuthenticatorConfigs:
+  -
+   displayName: ""
+   isEnabled: true
+   name: ""
+   isValid: true
+   isDefault: true
+   authenticatorProperties:
+    -
+     isAdvanced: false
+     isConfidential: false
+     defaultValue: ""
+     description: ""
+     displayName: ""
+     displayOrder: 1
+     name: ""
+     isRequired: true
+     type: ""
+     value: ""
+ idpProperties:
+  -
+   displayName: ""
+   name: ""
+   value: ""
+ justInTimeProvisioningConfig:
+  isDumbMode: true
+  isProvisioningEnabled: true
+  provisioningUserStore: ""
+  userStoreClaimUri: ""
+ permissionsAndRoleConfig:
+  idpRoles:
+   -
+    ""
+  permissions:
+   -
+    value: ""
+  roleMappings:
+   -
+    localRole:
+     localRoleName: ""
+     userStoreId: ""
+    remoteRole: ""
+ provisioningConnectorConfigs:
+  -
+   isBlocking: true
+   isEnabled: true
+   name: ""
+   isRulesEnabled: true
+   isValid: true
+   isDefault: true
+   provisioningProperties:
+    -
+     isAdvanced: true
+     isConfidential: false
+     defaultValue: ""
+     description: ""
+     displayName: ""
+     displayOrder: 1
+     name: ""
+     isRequired: false
+     type: ""
+     value: ""

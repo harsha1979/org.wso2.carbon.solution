@@ -1,0 +1,9 @@
+identityProvider:
+ alias: "ffff"
+ displayName: "sssssidp"
+ isEnable: false
+ isPrimary: false
+ isFederationHub: false
+ homeRealmId: ""
+ identityProviderDescription: "cccccc"
+ identityProviderName: "test"
