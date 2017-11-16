@@ -10,7 +10,6 @@ import org.wso2.carbon.solution.model.iam.sp.RemoteClaim;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class ServiceProviderBuilder {
 
@@ -119,16 +118,25 @@ public class ServiceProviderBuilder {
         authenticationStep_dest.setStepOrder(authenticationStep_source.getStepOrder());
         authenticationStep_dest.setSubjectStep(authenticationStep_source.isIsSubjectStep());
 
+
         List<FederatedIdentityProvider> federatedIdentityProviders_source = authenticationStep_source
                 .getFederatedIdentityProviders();
         if (federatedIdentityProviders_source != null) {
             List<IdentityProvider> federatedIdentityProviders_dest = new ArrayList<IdentityProvider>();
+
             for (FederatedIdentityProvider federatedIdentityProvider_source : federatedIdentityProviders_source) {
                 IdentityProvider federatedIdentityProvider_dest = new IdentityProvider();
                 federatedIdentityProviders_dest.add(federatedIdentityProvider_dest);
 
                 federatedIdentityProvider_dest.setIdentityProviderName(federatedIdentityProvider_source
                                                                                .getIdentityProviderName());
+
+                //#TODO: Why need default one to here.
+                /*FederatedAuthenticatorConfig defaultAuthenticatorConfig = new FederatedAuthenticatorConfig();
+                defaultAuthenticatorConfig.setName("samlsso");
+                defaultAuthenticatorConfig.setDisplayName("samlsso");
+                federatedIdentityProvider_dest.setDefaultAuthenticatorConfig(defaultAuthenticatorConfig);*/
+
                 List<org.wso2.carbon.solution.model.iam.sp.FederatedAuthenticatorConfig>
                         federatedAuthenticatorConfigs_source
                         = federatedIdentityProvider_source.getFederatedAuthenticatorConfigs();
@@ -143,9 +151,36 @@ public class ServiceProviderBuilder {
                                 FederatedAuthenticatorConfig();
                         federatedAuthenticatorConfigs_dest.add(federatedAuthenticatorConfig_dest);
                         federatedAuthenticatorConfig_dest.setName(federatedAuthenticatorConfig_source.getName());
+                        federatedAuthenticatorConfig_dest
+                                .setDisplayName(federatedAuthenticatorConfig_source.getDisplayName());
                     }
+                    federatedIdentityProvider_dest.setFederatedAuthenticatorConfigs
+                            (federatedAuthenticatorConfigs_dest.toArray(new
+                                                                                FederatedAuthenticatorConfig[federatedAuthenticatorConfigs_dest
+                                    .size()]));
                 }
             }
+            authenticationStep_dest.setFederatedIdentityProviders(federatedIdentityProviders_dest.toArray(new
+                                                                                                                  IdentityProvider[federatedIdentityProviders_dest
+                    .size()]));
+        }
+
+
+        List<org.wso2.carbon.solution.model.iam.sp.LocalAuthenticatorConfig> localAuthenticatorConfigs_source
+                = authenticationStep_source.getLocalAuthenticatorConfigs();
+        if (localAuthenticatorConfigs_source != null) {
+            List<LocalAuthenticatorConfig> localAuthenticatorConfigs_dest = new ArrayList<>();
+            for (org.wso2.carbon.solution.model.iam.sp.LocalAuthenticatorConfig localAuthenticatorConfig_source :
+                    localAuthenticatorConfigs_source) {
+                LocalAuthenticatorConfig localAuthenticatorConfig_dest = new LocalAuthenticatorConfig();
+                localAuthenticatorConfigs_dest.add(localAuthenticatorConfig_dest);
+
+                localAuthenticatorConfig_dest.setName(localAuthenticatorConfig_source.getName());
+                localAuthenticatorConfig_dest.setDisplayName(localAuthenticatorConfig_source.getDisplayName());
+            }
+            authenticationStep_dest.setLocalAuthenticatorConfigs(localAuthenticatorConfigs_dest.toArray(new
+                                                                                                                LocalAuthenticatorConfig[localAuthenticatorConfigs_dest
+                    .size()]));
         }
     }
 
@@ -249,9 +284,8 @@ public class ServiceProviderBuilder {
         remoteClaim_dest.setClaimUri(remoteClaim_source.getClaimUri());
     }
 
-    public static class SAMLApplicationBuilder{
+    public static class SAMLApplicationBuilder {
 
     }
-
 }
 

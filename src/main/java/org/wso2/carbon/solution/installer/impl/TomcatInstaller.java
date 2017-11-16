@@ -1,22 +1,67 @@
 package org.wso2.carbon.solution.installer.impl;
 
+import org.wso2.carbon.solution.CarbonSolutionException;
+import org.wso2.carbon.solution.deployer.tomcat.TomcatWebAppDeployer;
 import org.wso2.carbon.solution.installer.Installer;
+import org.wso2.carbon.solution.model.config.server.Server;
+import org.wso2.carbon.solution.util.ResourceLoader;
 
-public class TomcatInstaller implements Installer {
-    public void install(String solution) {
+import java.io.File;
 
+public class TomcatInstaller extends Installer {
+
+    private static final String TOMCAT_SERVER = "tomcat-server";
+
+    @Override
+    public boolean canHandle(String path) {
+        return true;
     }
-/*
-    public static IdentityServer getIdentityServerConfig(String instance) throws CarbonSolutionException {
-        Path tenantPath = Paths.get( Utility.RESOURCE_BASE , Constant.SERVER_CONFIG );
-        ServerConfig serverConfig = ResourceLoader
-                .loadResource(tenantPath, ServerConfig.class);
-        List<IdentityServer> identityServer = serverConfig.getIdentityServer();
-        for (IdentityServer server : identityServer) {
-            if(server.getInstance().equals(instance)){
-                return server ;
+
+    @Override
+    public void install(String path) throws CarbonSolutionException {
+        TomcatWebAppDeployer tomcatWebAppDeployer = new TomcatWebAppDeployer();
+        TomcatServerArtifact tomcatServerArtifact = new TomcatServerArtifact(path);
+        Server serverConfig = ResourceLoader
+                .getServerConfig(TOMCAT_SERVER, tomcatServerArtifact.getInstanceName());
+        tomcatWebAppDeployer.deploy(tomcatServerArtifact, serverConfig);
+    }
+
+    public static class TomcatServerArtifact {
+        private String path;
+        private String solution;
+        private String instanceName;
+        private String webApp;
+
+        public TomcatServerArtifact(String path) throws CarbonSolutionException {
+            this.path = path;
+            String[] split = path.split(File.separator);
+            if (split != null) {
+                if (split.length > 0) {
+                    solution = split[0];
+                }
+                if (split.length > 2) {
+                    instanceName = split[2];
+                }
+                if (split.length > 3) {
+                    webApp = split[3];
+                }
             }
         }
-        throw new CarbonSolutionException("No Identity Server config found for given instance, " + instance);
-    }*/
+
+        public String getInstanceName() {
+            return instanceName;
+        }
+
+        public String getPath() {
+            return path;
+        }
+
+        public String getSolution() {
+            return solution;
+        }
+
+        public String getWebApp() {
+            return webApp;
+        }
+    }
 }

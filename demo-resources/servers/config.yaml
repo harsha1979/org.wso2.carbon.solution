@@ -1,0 +1,27 @@
+servers:
+  -
+    serverName: "identity-server"
+    instance: "default"
+    properties:
+      host: "localhost"
+      port: 9443
+      trustStore: "default-client-truststore.jks"
+      userName: "admin"
+      password: "admin"
+  -
+    serverName: "identity-server"
+    instance: "federation"
+    properties:
+      host: "localhost"
+      port: 9444
+      trustStore: "default-client-truststore.jks"
+      userName: "admin"
+      password: "admin"
+  -
+      serverName: "tomcat-server"
+      instance: "default"
+      properties:
+        host: "localhost"
+        port: 8080
+        userName: "tomcat"
+        password: "tomcat"

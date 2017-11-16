@@ -2,11 +2,12 @@ package org.wso2.carbon.solution.util;
 
 public class Constant {
     public static final String YAML_EXT = "yaml";
-    public static final String SERVER_CONFIG_FILE_NAME = "server-configs.yaml";
+    public static final String SERVER_CONFIG_FILE = "config.yaml";
+    public static final String SOLUTION_CONFIG_FILE = "config.yaml";
 
-    public static final String SERVER_CONFIG = "server-configs";
+    public static final String SERVERS_HOME = "servers";
     public static final String SOLUTION_CONFIG = "solution-configs";
-    public static final String SOLUTIONS = "solutions";
+    public static final String SOLUTION_HOME = "solutions";
 
 
     public static class Tenant {

@@ -1,33 +1,30 @@
-
 package org.wso2.carbon.solution.model.iam.idp;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class FederatedAuthenticatorConfig implements Serializable
-{
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+public class FederatedAuthenticatorConfig implements Serializable {
+
+    private final static long serialVersionUID = -6000049908045342527L;
     private String displayName;
     private boolean isEnabled;
     private String name;
     private boolean isValid;
     private boolean isDefault;
     private List<AuthenticatorProperty> authenticatorProperties = new ArrayList<AuthenticatorProperty>();
-    private final static long serialVersionUID = -6000049908045342527L;
 
     /**
      * No args constructor for use in serialization
-     * 
      */
     public FederatedAuthenticatorConfig() {
     }
 
     /**
-     * 
      * @param authenticatorProperties
      * @param isDefault
      * @param name
@@ -35,7 +32,12 @@ public class FederatedAuthenticatorConfig implements Serializable
      * @param isValid
      * @param isEnabled
      */
-    public FederatedAuthenticatorConfig(String displayName, boolean isEnabled, String name, boolean isValid, boolean isDefault, List<AuthenticatorProperty> authenticatorProperties) {
+    public FederatedAuthenticatorConfig(String displayName,
+                                        boolean isEnabled,
+                                        String name,
+                                        boolean isValid,
+                                        boolean isDefault,
+                                        List<AuthenticatorProperty> authenticatorProperties) {
         super();
         this.displayName = displayName;
         this.isEnabled = isEnabled;
@@ -43,64 +45,6 @@ public class FederatedAuthenticatorConfig implements Serializable
         this.isValid = isValid;
         this.isDefault = isDefault;
         this.authenticatorProperties = authenticatorProperties;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public boolean isIsEnabled() {
-        return isEnabled;
-    }
-
-    public void setIsEnabled(boolean isEnabled) {
-        this.isEnabled = isEnabled;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public boolean isIsValid() {
-        return isValid;
-    }
-
-    public void setIsValid(boolean isValid) {
-        this.isValid = isValid;
-    }
-
-    public boolean isIsDefault() {
-        return isDefault;
-    }
-
-    public void setIsDefault(boolean isDefault) {
-        this.isDefault = isDefault;
-    }
-
-    public List<AuthenticatorProperty> getAuthenticatorProperties() {
-        return authenticatorProperties;
-    }
-
-    public void setAuthenticatorProperties(List<AuthenticatorProperty> authenticatorProperties) {
-        this.authenticatorProperties = authenticatorProperties;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("displayName", displayName).append("isEnabled", isEnabled).append("name", name).append("isValid", isValid).append("isDefault", isDefault).append("authenticatorProperties", authenticatorProperties).toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(authenticatorProperties).append(isDefault).append(name).append(displayName).append(isValid).append(isEnabled).toHashCode();
     }
 
     @Override
@@ -112,7 +56,69 @@ public class FederatedAuthenticatorConfig implements Serializable
             return false;
         }
         FederatedAuthenticatorConfig rhs = ((FederatedAuthenticatorConfig) other);
-        return new EqualsBuilder().append(authenticatorProperties, rhs.authenticatorProperties).append(isDefault, rhs.isDefault).append(name, rhs.name).append(displayName, rhs.displayName).append(isValid, rhs.isValid).append(isEnabled, rhs.isEnabled).isEquals();
+        return new EqualsBuilder().append(authenticatorProperties, rhs.authenticatorProperties)
+                .append(isDefault, rhs.isDefault).append(name, rhs.name).append(displayName, rhs.displayName)
+                .append(isValid, rhs.isValid).append(isEnabled, rhs.isEnabled).isEquals();
     }
 
+    public List<AuthenticatorProperty> getAuthenticatorProperties() {
+        return authenticatorProperties;
+    }
+
+    public void setAuthenticatorProperties(List<AuthenticatorProperty> authenticatorProperties) {
+        this.authenticatorProperties = authenticatorProperties;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(authenticatorProperties).append(isDefault).append(name).append(displayName)
+                .append(isValid).append(isEnabled).toHashCode();
+    }
+
+    public boolean isIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    public boolean isIsEnabled() {
+        return isEnabled;
+    }
+
+    public void setIsEnabled(boolean isEnabled) {
+        this.isEnabled = isEnabled;
+    }
+
+    public boolean isIsValid() {
+        return isValid;
+    }
+
+    public void setIsValid(boolean isValid) {
+        this.isValid = isValid;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("displayName", displayName).append("isEnabled", isEnabled)
+                .append("name", name).append("isValid", isValid).append("isDefault", isDefault)
+                .append("authenticatorProperties", authenticatorProperties).toString();
+    }
 }

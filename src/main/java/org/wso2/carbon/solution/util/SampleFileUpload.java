@@ -25,6 +25,9 @@ import java.net.URL;
 
 public class SampleFileUpload {
 
+    static final String UPLOAD_URL = "http://localhost:8080/manager/html/upload";
+    static final int BUFFER_SIZE = 4000096;
+
     public static void whenSendMultipartRequestUsingHttpClient_thenCorrect() {
         try {
             CloseableHttpClient client = HttpClients.createDefault();
@@ -44,9 +47,6 @@ public class SampleFileUpload {
     public static void cmain(String... args) throws IOException {
         whenSendMultipartRequestUsingHttpClient_thenCorrect();
     }
-
-    static final String UPLOAD_URL = "http://localhost:8080/manager/html/upload";
-    static final int BUFFER_SIZE = 4000096;
 
     public static void mai2n(String[] args) throws IOException {
         // takes file path from first program's argument
@@ -135,5 +135,4 @@ public class SampleFileUpload {
             e.printStackTrace();
         }
     }
-
 }

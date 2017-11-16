@@ -1,0 +1,42 @@
+serviceProvider:
+  name: "sample"
+  description: "sampledesc"
+  inboundAuthenticationConfig:
+    inboundAuthenticationRequestConfigs:
+      -
+        friendlyName: "travelocity.com"
+        inboundAuthKey: "travelocity.com"
+        inboundAuthType: "samlsso"
+        inboundConfigType: "standardAPP"
+        properties:
+          -
+            name: "issuer"
+            value: "travelocity.com"
+          -
+            name: "assertionConsumerUrl"
+            value: "http://localhost:8080/travelocity.com/home.jsp"
+          -
+            name: "doSignAssertions"
+            value: true
+  localAndOutBoundAuthenticationConfig:
+    isAlwaysSendBackAuthenticatedListOfIdPs: false
+    authenticationType: "flow"
+    isEnableAuthorization: false
+    isUseTenantDomainInLocalSubjectIdentifier: false
+    isUseUserstoreDomainInLocalSubjectIdentifier: false
+    authenticationSteps:
+      -
+        isAttributeStep: true
+        stepOrder: 1
+        isSubjectStep: true
+        federatedIdentityProviders:
+          -
+            identityProviderName: "myidp1"
+            federatedAuthenticatorConfigs:
+              -
+                name: "SAMLSSOAuthenticator"
+                displayName: "samlsso"
+        localAuthenticatorConfigs:
+          -
+            name: "BasicAuthenticator"
+            displayName: "basic"

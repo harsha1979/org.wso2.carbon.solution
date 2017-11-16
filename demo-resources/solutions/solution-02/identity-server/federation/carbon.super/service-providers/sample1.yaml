@@ -1,0 +1,17 @@
+serviceProvider:
+  name: "fedsp"
+  description: "fedsp"
+  inboundAuthenticationConfig:
+      inboundAuthenticationRequestConfigs:
+        -
+          friendlyName: "spentitiyID"
+          inboundAuthKey: "spentitiyID"
+          inboundAuthType: "samlsso"
+          inboundConfigType: "standardAPP"
+          properties:
+            -
+              name: "issuer"
+              value: "spentitiyID"
+            -
+              name: "assertionConsumerUrl"
+              value: "https://localhost:9443/commonauth"

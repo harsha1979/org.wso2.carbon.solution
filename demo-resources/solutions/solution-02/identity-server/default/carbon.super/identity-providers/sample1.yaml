@@ -1,0 +1,52 @@
+identityProvider:
+ alias: "https://localhost:9443/oauth2/token"
+ displayName: "myidp1"
+ isEnable: true
+ identityProviderDescription: "sample1idpdesc2"
+ identityProviderName: "myidp1"
+ claimConfig:
+  isAlwaysSendMappedLocalSubjectId: false
+  isLocalClaimDialect: true
+  roleClaimURI: "http://wso2.org/claims/role"
+ federatedAuthenticatorConfigs:
+   -
+    displayName: "samlsso"
+    isEnabled: true
+    name: "SAMLSSOAuthenticator"
+    authenticatorProperties:
+     -
+      name: "IdPEntityId"
+      value: "idpentityid"
+     -
+      name: "SPEntityId"
+      value: "spentitiyID"
+     -
+      name: "NameIDType"
+      value: "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
+     -
+      name: "ResponseAuthnContextClassRef"
+      value: "default"
+     -
+      name: "AuthnContextClassRef"
+      value: "Password Protected Transport"
+     -
+      name: "SSOUrl"
+      value: "https://localhost:9444/samlsso"
+     -
+      name: "AuthnContextComparisonLevel"
+      value: "Exact"
+     -
+      name: "ForceAuthentication"
+      value: "as_request"
+     -
+      name: "DigestAlgorithm"
+      value: "SHA1"
+     -
+      name: "IncludeAuthnContext"
+      value: "yes"
+     -
+      name: "SignatureAlgorithm"
+      value: "RSA with SHA1"
+     -
+      name: "RequestMethod"
+      value: "redirect"

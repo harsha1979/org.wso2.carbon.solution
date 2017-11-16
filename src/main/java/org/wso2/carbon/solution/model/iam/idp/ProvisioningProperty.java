@@ -1,14 +1,14 @@
-
 package org.wso2.carbon.solution.model.iam.idp;
 
-import java.io.Serializable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class ProvisioningProperty implements Serializable
-{
+import java.io.Serializable;
 
+public class ProvisioningProperty implements Serializable {
+
+    private final static long serialVersionUID = -3846707229956900536L;
     private boolean isAdvanced;
     private boolean isConfidential;
     private String defaultValue;
@@ -19,17 +19,14 @@ public class ProvisioningProperty implements Serializable
     private boolean isRequired;
     private String type;
     private String value;
-    private final static long serialVersionUID = -3846707229956900536L;
 
     /**
      * No args constructor for use in serialization
-     * 
      */
     public ProvisioningProperty() {
     }
 
     /**
-     * 
      * @param isRequired
      * @param isConfidential
      * @param description
@@ -41,7 +38,16 @@ public class ProvisioningProperty implements Serializable
      * @param defaultValue
      * @param isAdvanced
      */
-    public ProvisioningProperty(boolean isAdvanced, boolean isConfidential, String defaultValue, String description, String displayName, int displayOrder, String name, boolean isRequired, String type, String value) {
+    public ProvisioningProperty(boolean isAdvanced,
+                                boolean isConfidential,
+                                String defaultValue,
+                                String description,
+                                String displayName,
+                                int displayOrder,
+                                String name,
+                                boolean isRequired,
+                                String type,
+                                String value) {
         super();
         this.isAdvanced = isAdvanced;
         this.isConfidential = isConfidential;
@@ -55,20 +61,19 @@ public class ProvisioningProperty implements Serializable
         this.value = value;
     }
 
-    public boolean isIsAdvanced() {
-        return isAdvanced;
-    }
-
-    public void setIsAdvanced(boolean isAdvanced) {
-        this.isAdvanced = isAdvanced;
-    }
-
-    public boolean isIsConfidential() {
-        return isConfidential;
-    }
-
-    public void setIsConfidential(boolean isConfidential) {
-        this.isConfidential = isConfidential;
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof ProvisioningProperty) == false) {
+            return false;
+        }
+        ProvisioningProperty rhs = ((ProvisioningProperty) other);
+        return new EqualsBuilder().append(isRequired, rhs.isRequired).append(isConfidential, rhs.isConfidential)
+                .append(description, rhs.description).append(name, rhs.name).append(value, rhs.value)
+                .append(displayOrder, rhs.displayOrder).append(type, rhs.type).append(displayName, rhs.displayName)
+                .append(defaultValue, rhs.defaultValue).append(isAdvanced, rhs.isAdvanced).isEquals();
     }
 
     public String getDefaultValue() {
@@ -111,14 +116,6 @@ public class ProvisioningProperty implements Serializable
         this.name = name;
     }
 
-    public boolean isIsRequired() {
-        return isRequired;
-    }
-
-    public void setIsRequired(boolean isRequired) {
-        this.isRequired = isRequired;
-    }
-
     public String getType() {
         return type;
     }
@@ -136,25 +133,41 @@ public class ProvisioningProperty implements Serializable
     }
 
     @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("isAdvanced", isAdvanced).append("isConfidential", isConfidential).append("defaultValue", defaultValue).append("description", description).append("displayName", displayName).append("displayOrder", displayOrder).append("name", name).append("isRequired", isRequired).append("type", type).append("value", value).toString();
-    }
-
-    @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(isRequired).append(isConfidential).append(description).append(name).append(value).append(displayOrder).append(type).append(displayName).append(defaultValue).append(isAdvanced).toHashCode();
+        return new HashCodeBuilder().append(isRequired).append(isConfidential).append(description).append(name)
+                .append(value).append(displayOrder).append(type).append(displayName).append(defaultValue)
+                .append(isAdvanced).toHashCode();
+    }
+
+    public boolean isIsAdvanced() {
+        return isAdvanced;
+    }
+
+    public void setIsAdvanced(boolean isAdvanced) {
+        this.isAdvanced = isAdvanced;
+    }
+
+    public boolean isIsConfidential() {
+        return isConfidential;
+    }
+
+    public void setIsConfidential(boolean isConfidential) {
+        this.isConfidential = isConfidential;
+    }
+
+    public boolean isIsRequired() {
+        return isRequired;
+    }
+
+    public void setIsRequired(boolean isRequired) {
+        this.isRequired = isRequired;
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof ProvisioningProperty) == false) {
-            return false;
-        }
-        ProvisioningProperty rhs = ((ProvisioningProperty) other);
-        return new EqualsBuilder().append(isRequired, rhs.isRequired).append(isConfidential, rhs.isConfidential).append(description, rhs.description).append(name, rhs.name).append(value, rhs.value).append(displayOrder, rhs.displayOrder).append(type, rhs.type).append(displayName, rhs.displayName).append(defaultValue, rhs.defaultValue).append(isAdvanced, rhs.isAdvanced).isEquals();
+    public String toString() {
+        return new ToStringBuilder(this).append("isAdvanced", isAdvanced).append("isConfidential", isConfidential)
+                .append("defaultValue", defaultValue).append("description", description)
+                .append("displayName", displayName).append("displayOrder", displayOrder).append("name", name)
+                .append("isRequired", isRequired).append("type", type).append("value", value).toString();
     }
-
 }

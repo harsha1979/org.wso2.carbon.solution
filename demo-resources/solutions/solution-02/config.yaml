@@ -1,0 +1,18 @@
+solutionConfig:
+  executionSteps:
+    -
+      enable: true
+      path: "identity-server/federation/carbon.super/service-providers"
+    -
+      enable: true
+      path: "identity-server/default/carbon.super/identity-providers"
+    -
+      enable : true
+      path: "identity-server/default/carbon.super/service-providers"
+    -
+      enable: true
+      path: "tomcat/default/webapps/travelocity.com.war"
+  deployerDependencies:
+    -
+      deployer: "tomcat/webapps/playground2"
+      dependency: "identity-server/default/carbon.super/service-providers/sample1"

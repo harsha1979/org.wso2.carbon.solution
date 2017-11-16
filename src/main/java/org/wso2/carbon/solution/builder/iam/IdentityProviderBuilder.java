@@ -2,16 +2,13 @@ package org.wso2.carbon.solution.builder.iam;
 
 
 import org.wso2.carbon.identity.application.common.model.idp.xsd.*;
-import org.wso2.carbon.identity.application.common.model.idp.xsd.ClaimConfig;
-import org.wso2.carbon.identity.application.common.model.idp.xsd.ClaimMapping;
-import org.wso2.carbon.identity.application.common.model.idp.xsd.FederatedAuthenticatorConfig;
-import org.wso2.carbon.identity.application.common.model.idp.xsd.IdentityProvider;
-import org.wso2.carbon.identity.application.common.model.idp.xsd.JustInTimeProvisioningConfig;
-import org.wso2.carbon.identity.application.common.model.idp.xsd.LocalRole;
-import org.wso2.carbon.identity.application.common.model.idp.xsd.PermissionsAndRoleConfig;
-import org.wso2.carbon.identity.application.common.model.idp.xsd.ProvisioningConnectorConfig;
-import org.wso2.carbon.identity.application.common.model.idp.xsd.RoleMapping;
-import org.wso2.carbon.solution.model.iam.idp.*;
+import org.wso2.carbon.solution.model.iam.idp.AuthenticatorProperty;
+import org.wso2.carbon.solution.model.iam.idp.IdpClaim;
+import org.wso2.carbon.solution.model.iam.idp.IdpProperty;
+import org.wso2.carbon.solution.model.iam.idp.LocalClaim;
+import org.wso2.carbon.solution.model.iam.idp.Permission;
+import org.wso2.carbon.solution.model.iam.idp.ProvisioningProperty;
+import org.wso2.carbon.solution.model.iam.idp.RemoteClaim;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +19,6 @@ public class IdentityProviderBuilder {
 
     public static IdentityProviderBuilder getInstance() {
         return IdentityProviderBuilder.identityProviderBuilder;
-    }
-
-    public IdentityProvider buildServiceProvider(org.wso2.carbon.solution.model.iam.idp.IdentityProvider
-                                                         identityProvider_source) {
-        IdentityProvider identityProvider_dest = new IdentityProvider();
-        buildIdentityProvider(identityProvider_source, identityProvider_dest);
-        return identityProvider_dest;
     }
 
     public void buildIdentityProvider(org.wso2.carbon.solution.model.iam.idp.IdentityProvider
@@ -56,10 +46,11 @@ public class IdentityProviderBuilder {
 
         List<org.wso2.carbon.solution.model.iam.idp.ProvisioningConnectorConfig> provisioningConnectorConfigs_source =
                 identityProvider_source
-                .getProvisioningConnectorConfigs();
-        if(provisioningConnectorConfigs_source != null) {
+                        .getProvisioningConnectorConfigs();
+        if (provisioningConnectorConfigs_source != null) {
             List<ProvisioningConnectorConfig> provisioningConnectorConfigs_dest = new ArrayList<>();
-            for (org.wso2.carbon.solution.model.iam.idp.ProvisioningConnectorConfig provisioningConnectorConfig_source : provisioningConnectorConfigs_source) {
+            for (org.wso2.carbon.solution.model.iam.idp.ProvisioningConnectorConfig
+                    provisioningConnectorConfig_source : provisioningConnectorConfigs_source) {
                 ProvisioningConnectorConfig provisioningConnectorConfig_dest = new ProvisioningConnectorConfig();
                 provisioningConnectorConfigs_dest.add(provisioningConnectorConfig_dest);
 
@@ -71,10 +62,10 @@ public class IdentityProviderBuilder {
 
                 List<ProvisioningProperty> provisioningProperties_source = provisioningConnectorConfig_source
                         .getProvisioningProperties();
-                if(provisioningProperties_source != null){
+                if (provisioningProperties_source != null) {
                     List<Property> provisioningProperties_dest = new ArrayList<>();
                     for (ProvisioningProperty provisioningProperty_source : provisioningProperties_source) {
-                        Property provisioningProperty_dest =  new Property();
+                        Property provisioningProperty_dest = new Property();
                         provisioningProperty_dest.setName(provisioningProperty_source.getName());
                         provisioningProperty_dest.setValue(provisioningProperty_source.getValue());
                         provisioningProperty_dest.setType(provisioningProperty_source.getType());
@@ -85,11 +76,20 @@ public class IdentityProviderBuilder {
                         provisioningProperty_dest.setDescription(provisioningProperty_source.getName());
                         provisioningProperty_dest.setDisplayName(provisioningProperty_source.getName());
                     }
+                    provisioningConnectorConfig_dest.setProvisioningProperties(provisioningProperties_dest.toArray
+                            (new Property[provisioningProperties_dest.size()]));
                 }
             }
         }
 
         identityProvider_dest.setProvisioningRole(identityProvider_source.getProvisioningRole());
+    }
+
+    public IdentityProvider buildServiceProvider(org.wso2.carbon.solution.model.iam.idp.IdentityProvider
+                                                         identityProvider_source) {
+        IdentityProvider identityProvider_dest = new IdentityProvider();
+        buildIdentityProvider(identityProvider_source, identityProvider_dest);
+        return identityProvider_dest;
     }
 
     private void buildPermissionAndRoleConfig(org.wso2.carbon.solution.model.iam.idp.IdentityProvider
@@ -220,7 +220,7 @@ public class IdentityProviderBuilder {
                 federatedAuthenticatorConfigs_dest.add(federatedAuthenticatorConfig_dest);
 
                 federatedAuthenticatorConfig_dest.setDisplayName(federatedAuthenticatorConfig_source.getDisplayName());
-                federatedAuthenticatorConfig_dest.setName(federatedAuthenticatorConfig_source.getDisplayName());
+                federatedAuthenticatorConfig_dest.setName(federatedAuthenticatorConfig_source.getName());
                 federatedAuthenticatorConfig_dest.setValid(federatedAuthenticatorConfig_source.isIsValid());
                 federatedAuthenticatorConfig_dest.setEnabled(federatedAuthenticatorConfig_source.isIsEnabled());
 

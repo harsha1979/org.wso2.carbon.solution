@@ -10,6 +10,7 @@ public class FederatedAuthenticatorConfig implements Serializable {
 
     private final static long serialVersionUID = -2971026244651243588L;
     private String name;
+    private String displayName;
 
     /**
      * No args constructor for use in serialization
@@ -35,6 +36,14 @@ public class FederatedAuthenticatorConfig implements Serializable {
         }
         FederatedAuthenticatorConfig rhs = ((FederatedAuthenticatorConfig) other);
         return new EqualsBuilder().append(name, rhs.name).isEquals();
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public String getName() {
