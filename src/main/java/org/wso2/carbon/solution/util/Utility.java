@@ -1,6 +1,8 @@
 package org.wso2.carbon.solution.util;
 
 
+import java.io.File;
+
 public class Utility {
 
     public static String RESOURCE_HOME = "";
@@ -13,5 +15,13 @@ public class Utility {
                            + ".jks");
         System.setProperty("javax.net.ssl.trustStorePassword", "wso2carbon");
         System.setProperty("javax.net.ssl.trustStoreType", "JKS");
+    }
+
+    public static String getSolutionHome(){
+        return RESOURCE_HOME + File.separator + Constant.SOLUTION_HOME ;
+    }
+
+    public static String getCommonResourceHome(){
+        return RESOURCE_HOME + File.separator + Constant.COMMON_RESOURCE ;
     }
 }

@@ -30,15 +30,15 @@ public class IdentityProviderDeployer extends IdentityServerDeployer {
     }
 
     @Override
-    public void deploy(IdentityServerInstaller.IdentityServerArtifact identityServerArtifact, Server server) throws
+    public void doDeploy(IdentityServerInstaller.IdentityServerArtifact identityServerArtifact, Server server) throws
                                                                                                              CarbonSolutionException {
         Path resourcesPathObj = Paths
                 .get(Utility.RESOURCE_HOME, Constant.SOLUTION_HOME, identityServerArtifact.getPath());
-        Map<String, IdentityProviderEntity> identityProviderEntityMap = ResourceLoader
-                .loadResources(resourcesPathObj, IdentityProviderEntity.class);
+        /*Map<String, IdentityProviderEntity> identityProviderEntityMap = ResourceLoader
+                .loadResources(resourcesPathObj, IdentityProviderEntity.class);*/
+        IdentityProviderEntity identityProviderEntity_source = ResourceLoader.loadResource(resourcesPathObj,
+                                                                                           IdentityProviderEntity.class);
 
-        for (IdentityProviderEntity identityProviderEntity_source : identityProviderEntityMap
-                .values()) {
             try {
                 IdentityProvider identityProvider_source = identityProviderEntity_source.getIdentityProvider();
                 org.wso2.carbon.identity.application.common.model.idp.xsd.IdentityProvider identityProvider_dest
@@ -59,6 +59,6 @@ public class IdentityProviderDeployer extends IdentityServerDeployer {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+
     }
 }

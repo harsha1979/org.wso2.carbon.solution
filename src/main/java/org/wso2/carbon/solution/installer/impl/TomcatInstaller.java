@@ -42,8 +42,8 @@ public class TomcatInstaller extends Installer {
                 if (split.length > 2) {
                     instanceName = split[2];
                 }
-                if (split.length > 3) {
-                    webApp = split[3];
+                if (split.length > 4) {
+                    webApp = split[4];
                 }
             }
         }

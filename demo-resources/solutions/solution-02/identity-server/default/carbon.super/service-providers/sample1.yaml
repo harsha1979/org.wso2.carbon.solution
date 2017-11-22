@@ -1,20 +1,20 @@
 serviceProvider:
-  name: "sample"
-  description: "sampledesc"
+  name: "Solution-02-SP"
+  description: "Solution-02-SP Desc"
   inboundAuthenticationConfig:
     inboundAuthenticationRequestConfigs:
       -
-        friendlyName: "travelocity.com"
-        inboundAuthKey: "travelocity.com"
+        friendlyName: "solution-02-travelocity.com"
+        inboundAuthKey: "solution-02-travelocity.com"
         inboundAuthType: "samlsso"
         inboundConfigType: "standardAPP"
         properties:
           -
             name: "issuer"
-            value: "travelocity.com"
+            value: "solution-02-travelocity.com"
           -
             name: "assertionConsumerUrl"
-            value: "http://localhost:8080/travelocity.com/home.jsp"
+            value: "http://localhost:8080/solution-02-travelocity.com/home.jsp"
           -
             name: "doSignAssertions"
             value: true

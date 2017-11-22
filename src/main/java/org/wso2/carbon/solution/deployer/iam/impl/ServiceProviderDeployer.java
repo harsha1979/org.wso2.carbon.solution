@@ -12,8 +12,10 @@ import org.wso2.carbon.solution.CarbonSolutionException;
 import org.wso2.carbon.solution.builder.iam.ServiceProviderBuilder;
 import org.wso2.carbon.solution.deployer.iam.IdentityServerDeployer;
 import org.wso2.carbon.solution.endpoint.iam.IdentityServerAdminClient;
+import org.wso2.carbon.solution.endpoint.iam.config.IdentityServer;
 import org.wso2.carbon.solution.installer.impl.IdentityServerInstaller;
 import org.wso2.carbon.solution.model.config.server.Server;
+import org.wso2.carbon.solution.model.iam.idp.IdentityProviderEntity;
 import org.wso2.carbon.solution.model.iam.sp.InboundAuthenticationConfig;
 import org.wso2.carbon.solution.model.iam.sp.InboundAuthenticationRequestConfig;
 import org.wso2.carbon.solution.model.iam.sp.Property;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 public class ServiceProviderDeployer extends IdentityServerDeployer {
@@ -65,16 +68,15 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
     }
 
     @Override
-    public void deploy(IdentityServerInstaller.IdentityServerArtifact identityServerArtifact, Server server) throws
+    public void doDeploy(IdentityServerInstaller.IdentityServerArtifact identityServerArtifact, Server server) throws
                                                                                                              CarbonSolutionException {
 
         Path resourcesPathObj = Paths
                 .get(Utility.RESOURCE_HOME, Constant.SOLUTION_HOME, identityServerArtifact.getPath());
-        Map<String, ServiceProviderEntity> serviceProviderEntityMap = ResourceLoader
-                .loadResources(resourcesPathObj, ServiceProviderEntity.class);
 
-        for (ServiceProviderEntity serviceProviderEntity_source : serviceProviderEntityMap
-                .values()) {
+        ServiceProviderEntity serviceProviderEntity_source = ResourceLoader.loadResource(resourcesPathObj,
+                                                                                           ServiceProviderEntity.class);
+
             try {
                 org.wso2.carbon.solution.model.iam.sp.ServiceProvider serviceProvider_source
                         = serviceProviderEntity_source
@@ -91,11 +93,11 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
 
                 if (availableInboundProtocol(PROTOCOL_SAML, serviceProvider_source)) {
                     SAMLApplicationDeployer samlApplicationDeployer = new SAMLApplicationDeployer();
-                    samlApplicationDeployer.deploy(serviceProvider_source, server);
+                    samlApplicationDeployer.deploy(serviceProvider_source, identityServerArtifact, server);
                 }
                 if (availableInboundProtocol(PROTOCOL_OAUTH2, serviceProvider_source)) {
                     OAuth2ApplicationDeployer oAuth2ApplicationDeployer = new OAuth2ApplicationDeployer();
-                    oAuth2ApplicationDeployer.deploy(serviceProvider_source, server);
+                    oAuth2ApplicationDeployer.deploy(serviceProvider_source, identityServerArtifact, server);
                 }
 
                 updateSensibleDefaults(serviceProvider_source);
@@ -117,7 +119,7 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+
     }
 
     private void updateSensibleDefaults(org.wso2.carbon.solution.model.iam.sp.ServiceProvider serviceProvider_source) {
@@ -166,7 +168,9 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
 
 
         public void deploy(org.wso2.carbon.solution.model.iam.sp.ServiceProvider serviceProvider_source,
-                           Server server) {
+                           IdentityServerInstaller.IdentityServerArtifact identityServerArtifact,Server server) {
+            Properties updateProperty = new Properties();
+
             InboundAuthenticationConfig inboundAuthenticationConfig_source = serviceProvider_source
                     .getInboundAuthenticationConfig();
             if (inboundAuthenticationConfig_source != null) {
@@ -196,6 +200,8 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
                                         OAuth2ApplicationDeployer
                                                 .OAuth2ApplicationConstants.CALLBACK_URL)) {
                                     oAuthConsumerAppDTO_dest.setCallbackUrl(property.getValue());
+                                    updateProperty.put(identityServerArtifact.getArtifactFile()
+                                                       +"-CallbackURL", property.getValue());
                                 }
                                 if (property.getName().equals(
                                         OAuth2ApplicationDeployer
@@ -296,6 +302,11 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
                                         inboundAuthenticationRequestConfig_source.setProperties(newProperties);
                                         inboundAuthenticationRequestConfig_source.setInboundAuthKey
                                                 (oAuthConsumerAppDTO.getOauthConsumerKey());
+                                        updateProperty.put(identityServerArtifact.getArtifactFile()
+                                                           +"-ConsumerKey", oAuthConsumerAppDTO.getOauthConsumerKey());
+                                        updateProperty.put(identityServerArtifact.getArtifactFile()
+                                                           +"-ConsumerSecret", oAuthConsumerAppDTO.getOauthConsumerSecret
+                                                ());
                                         break;
                                     }
                                 }
@@ -308,6 +319,38 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
                     }
                 }
             }
+
+            IdentityServer identityServer = new IdentityServer(server);
+            String authorizeEndpoint = "https://" + identityServer.getHost() ;
+            if(identityServer.getPort() > 0){
+                authorizeEndpoint += ":" + identityServer.getPort() ;
+            }
+            updateProperty.put(identityServerArtifact.getArtifactFile()
+                               +"-AuthorizeEndpoint", authorizeEndpoint + "/oauth2/authorize");
+
+            String accessTokenEndpoint = "https://" + identityServer.getHost() ;
+            if(identityServer.getPort() > 0){
+                accessTokenEndpoint += ":" + identityServer.getPort() ;
+            }
+            updateProperty.put(identityServerArtifact.getArtifactFile()
+                               +"-AccessTokenEndpoint", accessTokenEndpoint + "/oauth2/token");
+
+            String logoutEndpoint = "https://" + identityServer.getHost() ;
+            if(identityServer.getPort() > 0){
+                logoutEndpoint += ":" + identityServer.getPort() ;
+            }
+            updateProperty.put(identityServerArtifact.getArtifactFile()
+                               +"-LogoutEndpoint", logoutEndpoint + "/oidc/logout");
+
+            String userInfo = "https://" + identityServer.getHost() ;
+            if(identityServer.getPort() > 0){
+                userInfo += ":" + identityServer.getPort() ;
+            }
+            updateProperty.put(identityServerArtifact.getArtifactFile()
+                               +"-UserInfoEndpoint", userInfo + "/oauth2/userinfo");
+
+
+            IdentityServerDeployer.updateProperty(identityServerArtifact,updateProperty);
         }
 
         private void updateSensibleDefaults(InboundAuthenticationRequestConfig
@@ -349,7 +392,7 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
                 property.setName(
                         OAuth2ApplicationDeployer
                                 .OAuth2ApplicationConstants.PKCE_MANDATORY);
-                property.setValue("true");
+                property.setValue("false");
                 properties.add(property);
             }
             if (!propertyNameSet.contains(
@@ -359,7 +402,7 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
                 property.setName(
                         OAuth2ApplicationDeployer
                                 .OAuth2ApplicationConstants.PKCE_SUPPORT_PLAN);
-                property.setValue("true");
+                property.setValue("false");
                 properties.add(property);
             }
             if (!propertyNameSet.contains(
@@ -419,7 +462,8 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
 
 
         public void deploy(org.wso2.carbon.solution.model.iam.sp.ServiceProvider serviceProvider_source,
-                           Server server) {
+                           IdentityServerInstaller.IdentityServerArtifact identityServerArtifact,Server server) {
+            Properties updateProperty = new Properties();
             InboundAuthenticationConfig inboundAuthenticationConfig_source = serviceProvider_source
                     .getInboundAuthenticationConfig();
             if (inboundAuthenticationConfig_source != null) {
@@ -439,11 +483,15 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
                                         SAMLApplicationDeployer
                                                 .SAMLApplicationConstants.ISSUER)) {
                                     samlssoServiceProviderDTO_dest.setIssuer(property.getValue());
+                                    updateProperty.put(identityServerArtifact.getArtifactFile()
+                                                       +"-SAML2.SPEntityId", property.getValue());
                                 }
                                 if (property.getName().equals(
                                         SAMLApplicationDeployer
                                                 .SAMLApplicationConstants.ASSERTION_CONSUMER_URL)) {
                                     samlssoServiceProviderDTO_dest.setAssertionConsumerUrl(property.getValue());
+                                    updateProperty.put(identityServerArtifact.getArtifactFile()
+                                                       +"-SAML2.AssertionConsumerURL", property.getValue());
                                 }
                                 if (property.getName().equals(
                                         SAMLApplicationDeployer
@@ -660,6 +708,19 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
                     }
                 }
             }
+            IdentityServer identityServer = new IdentityServer(server);
+
+            updateProperty.put(identityServerArtifact.getArtifactFile()
+                               +"-SAML2.IdPEntityId", identityServer.getHost());
+            String samlEndpoint = "https://" + identityServer.getHost() ;
+            if(identityServer.getPort() > 0){
+                samlEndpoint += ":" + identityServer.getPort() ;
+            }
+            updateProperty.put(identityServerArtifact.getArtifactFile()
+                               +"-SAML2.IdPURL", samlEndpoint + "/samlsso");
+
+
+            IdentityServerDeployer.updateProperty(identityServerArtifact,updateProperty);
         }
 
         private void updateSensibleDefaults(InboundAuthenticationRequestConfig

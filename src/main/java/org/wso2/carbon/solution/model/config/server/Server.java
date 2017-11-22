@@ -18,6 +18,7 @@ public class Server implements Serializable {
      * No args constructor for use in serialization
      */
     public Server() {
+
     }
 
     /**

@@ -1,0 +1,53 @@
+serviceProvider:
+  name: "SSolution-03-SP"
+  description: "Solution-03-SP Desc"
+  inboundAuthenticationConfig:
+    inboundAuthenticationRequestConfigs:
+      -
+        friendlyName: "solution-03-travelocity.com"
+        inboundAuthKey: "solution-03-travelocity.com"
+        inboundAuthType: "samlsso"
+        inboundConfigType: "standardAPP"
+        properties:
+          -
+            name: "issuer"
+            value: "solution-03-travelocity.com"
+          -
+            name: "assertionConsumerUrl"
+            value: "http://localhost:8080/solution-03-travelocity.com/home.jsp"
+          -
+            name: "doSignAssertions"
+            value: true
+      -
+        friendlyName: "solution-03-playground2"
+        inboundAuthKey:
+        inboundAuthType: "oauth2"
+        properties:
+          -
+            name: "applicationName"
+            value: "solution-03-playground2"
+          -
+            name: "callbackUrl"
+            value: "http://localhost:8080/solution-03-playground2/oauth2client"
+  localAndOutBoundAuthenticationConfig:
+    isAlwaysSendBackAuthenticatedListOfIdPs: false
+    authenticationType: "flow"
+    isEnableAuthorization: false
+    isUseTenantDomainInLocalSubjectIdentifier: false
+    isUseUserstoreDomainInLocalSubjectIdentifier: false
+    authenticationSteps:
+      -
+        isAttributeStep: true
+        stepOrder: 1
+        isSubjectStep: true
+        federatedIdentityProviders:
+          -
+            identityProviderName: "TwitterIDP"
+            federatedAuthenticatorConfigs:
+              -
+                name: "TwitterAuthenticator"
+                displayName: "twitter"
+        localAuthenticatorConfigs:
+          -
+            name: "BasicAuthenticator"
+            displayName: "basic"
