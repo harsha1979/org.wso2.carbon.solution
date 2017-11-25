@@ -4,6 +4,7 @@ package org.wso2.carbon.solution.deployer.iam;
 import org.wso2.carbon.solution.CarbonSolutionException;
 import org.wso2.carbon.solution.deployer.iam.impl.IdentityProviderDeployer;
 import org.wso2.carbon.solution.deployer.iam.impl.ServiceProviderDeployer;
+import org.wso2.carbon.solution.deployer.iam.impl.UserStoreDeployer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class IdentityServerDeployerFactory {
     private IdentityServerDeployerFactory() {
         identityServerDeployerRegistry.add(new ServiceProviderDeployer());
         identityServerDeployerRegistry.add(new IdentityProviderDeployer());
+        identityServerDeployerRegistry.add(new UserStoreDeployer());
     }
 
     public static IdentityServerDeployerFactory getInstance() {

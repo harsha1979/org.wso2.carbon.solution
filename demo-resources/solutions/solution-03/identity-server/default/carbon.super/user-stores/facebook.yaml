@@ -1,0 +1,3 @@
+userStore:
+ userStoreDomain: "Facebook-S3"
+ dataSourceName: "Solution-03-Datasource-01"

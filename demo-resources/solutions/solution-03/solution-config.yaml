@@ -1,21 +1,39 @@
 solutionConfig:
   executionSteps:
     -
-      enable: true
-      path: "identity-server/default/carbon.super/identity-providers/sample1.yaml"
+      action: "install"
+      path: "database-server/h2-database/database1"
     -
-      enable : true
-      path: "identity-server/default/carbon.super/service-providers/sample1.yaml"
+      action: "install"
+      path: "database-server/h2-database/database2"
     -
-      enable: true
-      path: "tomcat/default/webapps/playground2"
+      action: "install"
+      path: "database-server/h2-database/database3"
     -
-      enable: true
+      action: "install"
+      path: "identity-server/default/carbon.super/user-stores/facebook.yaml"
+    -
+      action: "install"
+      path: "identity-server/default/carbon.super/user-stores/twitter.yaml"
+    -
+      action: "install"
+      path: "identity-server/default/carbon.super/user-stores/google.yaml"
+    -
+      action: "install"
+      path: "identity-server/default/carbon.super/identity-providers/twitter.yaml"
+    -
+      action: "install"
+      path: "identity-server/default/carbon.super/identity-providers/facebook.yaml"
+    -
+      action: "install"
+      path: "identity-server/default/carbon.super/identity-providers/google.yaml"
+    -
+      action: "install"
+      path: "identity-server/default/carbon.super/service-providers/sample-sp.yaml"
+    -
+      action: "install"
       path: "tomcat/default/webapps/travelocity.com"
   deployerDependencies:
     -
-      deployer: "tomcat/default/webapps/playground2"
-      dependency: "identity-server/default/carbon.super/service-providers/sample1.yaml"
-    -
       deployer: "tomcat/default/webapps/travelocity.com"
-      dependency: "identity-server/default/carbon.super/service-providers/sample1.yaml"
+      dependency: "identity-server/default/carbon.super/service-providers/sample-sp.yaml"

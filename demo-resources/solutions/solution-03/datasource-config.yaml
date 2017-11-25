@@ -1,0 +1,25 @@
+datasources:
+ -
+  name: "Solution-03-Datasource-01"
+  databaseType: "H2"
+  properties:
+   url: "jdbc:h2:/home/harshat/wso2/demo-suite/project/org.wso2.carbon.solution/demo-resources/solutions/solution-03/database-server/h2-database/database1"
+   username: wso2carbon
+   password: wso2carbon
+   driverClassName: "org.h2.Driver"
+ -
+  name: "Solution-03-Datasource-02"
+  databaseType: "H2"
+  properties:
+   url: "jdbc:h2:/home/harshat/wso2/demo-suite/project/org.wso2.carbon.solution/demo-resources/solutions/solution-03/database-server/h2-database/database2"
+   username: wso2carbon
+   password: wso2carbon
+   driverClassName: "org.h2.Driver"
+ -
+  name: "Solution-03-Datasource-03"
+  databaseType: "H2"
+  properties:
+   url: "jdbc:h2:/home/harshat/wso2/demo-suite/project/org.wso2.carbon.solution/demo-resources/solutions/solution-03/database-server/h2-database/database3"
+   username: wso2carbon
+   password: wso2carbon
+   driverClassName: "org.h2.Driver"

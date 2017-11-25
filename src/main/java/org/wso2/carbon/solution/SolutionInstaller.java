@@ -17,7 +17,7 @@ public class SolutionInstaller {
             SolutionConfig solutionConfig = ResourceLoader.getSolutionConfig(solution);
             List<ExecutionStep> executionSteps = solutionConfig.getExecutionSteps();
             for (ExecutionStep executionStep : executionSteps) {
-                if (executionStep.isEnable()) {
+                if (executionStep.getAction().equals("install")) {
                     String path = executionStep.getPath();
                     String solutionPath = solution + File.separator + path;
                     Installer installer = InstallerFactory.getInstance().getInstaller(solutionPath);

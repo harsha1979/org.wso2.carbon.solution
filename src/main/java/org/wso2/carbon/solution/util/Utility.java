@@ -21,7 +21,13 @@ public class Utility {
         return RESOURCE_HOME + File.separator + Constant.SOLUTION_HOME ;
     }
 
-    public static String getCommonResourceHome(){
-        return RESOURCE_HOME + File.separator + Constant.COMMON_RESOURCE ;
+    public static String getCommonWebAppHome(){
+        return RESOURCE_HOME + File.separator + Constant.COMMON_RESOURCE  + File.separator + Constant
+                .COMMON_RESOURCE_WEBAPPS;
+    }
+
+    public static String getCommonDataShemaHome(){
+        return RESOURCE_HOME + File.separator + Constant.COMMON_RESOURCE  + File.separator + Constant
+                .COMMON_RESOURCE_DATA;
     }
 }

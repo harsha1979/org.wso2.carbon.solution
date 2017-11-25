@@ -1,0 +1,3 @@
+userStore:
+ userStoreDomain: "Google-S3"
+ dataSourceName: "Solution-03-Datasource-03"

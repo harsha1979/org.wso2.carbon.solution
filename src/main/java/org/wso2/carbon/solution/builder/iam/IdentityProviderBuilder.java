@@ -40,11 +40,21 @@ public class IdentityProviderBuilder {
 
         buildIdpProperties(identityProvider_source, identityProvider_dest);
 
-        buildJustInTimeProvisionConfig(identityProvider_source);
+        buildJustInTimeProvisionConfig(identityProvider_source, identityProvider_dest);
 
         buildPermissionAndRoleConfig(identityProvider_source, identityProvider_dest);
 
-        List<org.wso2.carbon.solution.model.iam.idp.ProvisioningConnectorConfig> provisioningConnectorConfigs_source =
+        buildProvisioingCOnnector(identityProvider_source, identityProvider_dest);
+
+        identityProvider_dest.setProvisioningRole(identityProvider_source.getProvisioningRole());
+    }
+
+    private void buildProvisioingCOnnector(org.wso2.carbon.solution.model.iam.idp.IdentityProvider
+                                                   identityProvider_source,
+                                           IdentityProvider identityProvider_dest) {
+        List<org.wso2.carbon.solution.model.iam.idp.ProvisioningConnectorConfig>
+
+                provisioningConnectorConfigs_source =
                 identityProvider_source
                         .getProvisioningConnectorConfigs();
         if (provisioningConnectorConfigs_source != null) {
@@ -75,14 +85,16 @@ public class IdentityProviderBuilder {
                         provisioningProperty_dest.setDefaultValue(provisioningProperty_source.getName());
                         provisioningProperty_dest.setDescription(provisioningProperty_source.getName());
                         provisioningProperty_dest.setDisplayName(provisioningProperty_source.getName());
+                        provisioningProperties_dest.add(provisioningProperty_dest);
                     }
                     provisioningConnectorConfig_dest.setProvisioningProperties(provisioningProperties_dest.toArray
                             (new Property[provisioningProperties_dest.size()]));
                 }
             }
+            identityProvider_dest.setProvisioningConnectorConfigs(
+                    provisioningConnectorConfigs_dest
+                            .toArray(new ProvisioningConnectorConfig[provisioningConnectorConfigs_dest.size()]));
         }
-
-        identityProvider_dest.setProvisioningRole(identityProvider_source.getProvisioningRole());
     }
 
     public IdentityProvider buildServiceProvider(org.wso2.carbon.solution.model.iam.idp.IdentityProvider
@@ -147,7 +159,8 @@ public class IdentityProviderBuilder {
     }
 
     private void buildJustInTimeProvisionConfig(org.wso2.carbon.solution.model.iam.idp.IdentityProvider
-                                                        identityProvider_source) {
+                                                        identityProvider_source,
+                                                IdentityProvider identityProvider_dest) {
         org.wso2.carbon.solution.model.iam.idp.JustInTimeProvisioningConfig justInTimeProvisioningConfig_source =
                 identityProvider_source
                         .getJustInTimeProvisioningConfig();
@@ -160,6 +173,7 @@ public class IdentityProviderBuilder {
             justInTimeProvisioningConfig_dest.setDumbMode(justInTimeProvisioningConfig_source.isIsDumbMode());
             justInTimeProvisioningConfig_dest
                     .setProvisioningEnabled(justInTimeProvisioningConfig_source.isIsProvisioningEnabled());
+            identityProvider_dest.setJustInTimeProvisioningConfig(justInTimeProvisioningConfig_dest);
         }
     }
 
@@ -186,7 +200,10 @@ public class IdentityProviderBuilder {
 
                     buildClaimMapping(claimMapping_source, claimMapping_dest);
                 }
+                claimConfig_dest
+                        .setClaimMappings(claimMappings_dest.toArray(new ClaimMapping[claimMappings_dest.size()]));
             }
+
 
             List<IdpClaim> idpClaims_source = claimConfig_source.getIdpClaims();
             if (idpClaims_source != null) {
@@ -300,7 +317,7 @@ public class IdentityProviderBuilder {
         Claim remoteClaim_dest = new Claim();
         claimMapping_dest.setRemoteClaim(remoteClaim_dest);
 
-        remoteClaim_source.setClaimId(localClaim_source.getClaimId());
-        remoteClaim_source.setClaimUri(localClaim_source.getClaimUri());
+        remoteClaim_dest.setClaimId(remoteClaim_source.getClaimId());
+        remoteClaim_dest.setClaimUri(remoteClaim_source.getClaimUri());
     }
 }

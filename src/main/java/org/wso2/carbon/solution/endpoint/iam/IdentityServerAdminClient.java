@@ -6,6 +6,7 @@ import org.apache.axis2.client.ServiceClient;
 import org.wso2.carbon.identity.application.mgt.stub.IdentityApplicationManagementServiceStub;
 import org.wso2.carbon.identity.oauth.stub.OAuthAdminServiceStub;
 import org.wso2.carbon.identity.sso.saml.stub.IdentitySAMLSSOConfigServiceStub;
+import org.wso2.carbon.identity.user.store.configuration.stub.UserStoreConfigAdminServiceStub;
 import org.wso2.carbon.idp.mgt.stub.IdentityProviderMgtServiceStub;
 import org.wso2.carbon.solution.endpoint.iam.config.IdentityServer;
 import org.wso2.carbon.solution.model.config.server.Server;
@@ -25,7 +26,7 @@ public class IdentityServerAdminClient {
         } catch (AxisFault axisFault) {
             axisFault.printStackTrace();
         } catch (AuthenticationException e) {
-            e.printStackTrace();
+            
         }
         return stub;
     }
@@ -40,7 +41,7 @@ public class IdentityServerAdminClient {
         } catch (AxisFault axisFault) {
             axisFault.printStackTrace();
         } catch (AuthenticationException e) {
-            e.printStackTrace();
+            
         }
         return stub;
     }
@@ -55,7 +56,7 @@ public class IdentityServerAdminClient {
         } catch (AxisFault axisFault) {
             axisFault.printStackTrace();
         } catch (AuthenticationException e) {
-            e.printStackTrace();
+            
         }
         return stub;
     }
@@ -70,7 +71,22 @@ public class IdentityServerAdminClient {
         } catch (AxisFault axisFault) {
             axisFault.printStackTrace();
         } catch (AuthenticationException e) {
-            e.printStackTrace();
+            
+        }
+        return stub;
+    }
+
+    public static UserStoreConfigAdminServiceStub getUserStoreConfigAdminService(Server server) {
+        UserStoreConfigAdminServiceStub stub = null;
+        IdentityServer identityServer = new IdentityServer(server);
+        try {
+            String serviceURL = identityServer.getHTTPSServerURL() + "/services/UserStoreConfigAdminService";
+            stub = new UserStoreConfigAdminServiceStub(serviceURL);
+            doServiceAuthenticate(identityServer, stub._getServiceClient());
+        } catch (AxisFault axisFault) {
+            axisFault.printStackTrace();
+        } catch (AuthenticationException e) {
+            
         }
         return stub;
     }
@@ -82,4 +98,7 @@ public class IdentityServerAdminClient {
         authenticator.setAccessUsername(identityServer.getPassword());
         authenticator.authenticate(serviceClient);
     }
+
+
+
 }

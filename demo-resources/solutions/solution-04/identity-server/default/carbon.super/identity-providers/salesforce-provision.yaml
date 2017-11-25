@@ -1,0 +1,156 @@
+identityProvider:
+ alias: "https://localhost:9443/oauth2/token"
+ displayName: "Salesforce-S3"
+ certificate: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVtVENDQTRHZ0F3SUJBZ0lPQVYveWQrdVlBQUFBQURLeUNOZ3dEUVlKS29aSWh2Y05BUUVMQlFBd2dZb3gKSWpBZ0JnTlZCQU1NR1hkemJ6SnZkWFJpYjNWdVpHTnZibTVsWTNSdmNtTmxjblF4R0RBV0JnTlZCQXNNRHpBdwpSRGRHTURBd01EQXpaVzAzVmpFWE1CVUdBMVVFQ2d3T1UyRnNaWE5tYjNKalpTNWpiMjB4RmpBVUJnTlZCQWNNCkRWTmhiaUJHY21GdVkybHpZMjh4Q3pBSkJnTlZCQWdNQWtOQk1Rd3dDZ1lEVlFRR0V3TlZVMEV3SGhjTk1UY3gKTVRJMU1Ea3hOelEyV2hjTk1UZ3hNVEkxTURBd01EQXdXakNCaWpFaU1DQUdBMVVFQXd3WmQzTnZNbTkxZEdKdgpkVzVrWTI5dWJtVmpkRzl5WTJWeWRERVlNQllHQTFVRUN3d1BNREJFTjBZd01EQXdNRE5sYlRkV01SY3dGUVlEClZRUUtEQTVUWVd4bGMyWnZjbU5sTG1OdmJURVdNQlFHQTFVRUJ3d05VMkZ1SUVaeVlXNWphWE5qYnpFTE1Ba0cKQTFVRUNBd0NRMEV4RERBS0JnTlZCQVlUQTFWVFFUQ0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQwpBUW9DZ2dFQkFKZ0JJUjh5L0FOVXBNS1oyYTh1VC9zNGV6N2dyQzlKc21aT0t4OWhERGxHNzdaQXhoYUxrRjdFCmVGNzRPYUNMajZSU1lWeTd0NitMdlk0YzVBUU95R2xlOEhVcmcxN1dpWjIwYTEyODIyQ1ltMVU5dVFwNzIvSDIKeGxYRlVCanBuOWNMd3hIRE8vS1ZKT3ExUndrRFFMVitRUmxxK0pDSC9KWXhwVGRrNVZJc2ZQek5tYXBkNTg2YQphTGhzblpDSTVzUFJVTGtZY2hUSmNlemNwcWIrL2VuT0V6T1BXaW0xQ2dwS3l5L1M4NWRUWkJqTzZ3Zng3SzRVCndEcHlscm1OVXBDa2hTTld1WUNuL1dRNEQ5Yi85cG9VdTJzeUE0eW56OVFJbnZTUm9RRFpiNDdVZEwrUlk1YmMKZ0NGODIrdDNHWVRzR2gybDhQYk9ueFdPVmVlb1VWY0NBd0VBQWFPQitqQ0I5ekFkQmdOVkhRNEVGZ1FVa1V0WAo0eWRVTkprVVRrWjhjU1VLM21iamtlOHdEd1lEVlIwVEFRSC9CQVV3QXdFQi96Q0J4QVlEVlIwakJJRzhNSUc1CmdCU1JTMWZqSjFRMG1SUk9Sbnh4SlFyZVp1T1I3NkdCa0tTQmpUQ0JpakVpTUNBR0ExVUVBd3daZDNOdk1tOTEKZEdKdmRXNWtZMjl1Ym1WamRHOXlZMlZ5ZERFWU1CWUdBMVVFQ3d3UE1EQkVOMFl3TURBd01ETmxiVGRXTVJjdwpGUVlEVlFRS0RBNVRZV3hsYzJadmNtTmxMbU52YlRFV01CUUdBMVVFQnd3TlUyRnVJRVp5WVc1amFYTmpiekVMCk1Ba0dBMVVFQ0F3Q1EwRXhEREFLQmdOVkJBWVRBMVZUUVlJT0FWL3lkK3VZQUFBQUFES3lDTmd3RFFZSktvWkkKaHZjTkFRRUxCUUFEZ2dFQkFCeGd1WUxhTU1HRlVhbDgzNzR4U0Q0SkEyVG4zQmpDb0ptNWtFaFZHVHhLODFnKwoyQ3BiazVQajdjaFV4SzgwdGxEMjJjM0l5TTBkNEh2V3M2eFdxeTMxdUhFazdSYWNrMHZQMVk0ek5ZYnNrVEtaCmdUTVhKdmkwQWx5Z3NVTU10VmxGOU1OS0hURnlsVHBHaU1ab1JRQXdBSjBsSnZOcmVTcDNXSTlYVlRjN0lBMUkKbHp2ZjRKL0VvS2JKSTVMYjV5dWtVZHJUV29XVS9jYmJuK3JpMjBmeitab2N0V3RzdnFERE1QcXRyYytlRXlNUQptSitxS2YvNmhFS2poaFJuV3NJbi9TeDkyOG5mZnZFMmNaTFZUdCt5dGkrQWZ1SlB4M3k1Vi91NTc3aGRyM3RQCkVIYnllNjYrNkZ2V1lQSlFibmkvc3YwNXUvRlNmRy9lOXJSSG8xTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo="
+ isEnable: true
+ identityProviderDescription: "SalesforceProvision Desc Solution-03"
+ identityProviderName: "Salesforce-S3"
+ claimConfig:
+  isAlwaysSendMappedLocalSubjectId: false
+  isLocalClaimDialect: true
+  roleClaimURI: "http://wso2.org/claims/role"
+ claimConfig:
+  isAlwaysSendMappedLocalSubjectId: false
+  isLocalClaimDialect: false
+  roleClaimURI: ""
+  userClaimURI: ""
+  claimMappings:
+   -
+    defaultValue: "WSO2DemoSuite"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/givenname"
+    remoteClaim:
+     claimUri: "Alias"
+   -
+    defaultValue: "harsha.thirimanna@gmail.com"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/emailaddress"
+    remoteClaim:
+     claimUri: "Email"
+   -
+    defaultValue: "UTF-8"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/otherphone"
+    remoteClaim:
+     claimUri: "EmailEncodingKey"
+   -
+    defaultValue: "en_US"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/dob"
+    remoteClaim:
+     claimUri: "LanguageLocaleKey"
+   -
+    defaultValue: "Demo"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/lastname"
+    remoteClaim:
+     claimUri: "LastName"
+   -
+    defaultValue: "en_US"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/primaryChallengeQuestion"
+    remoteClaim:
+     claimUri: "LocaleSidKey"
+   -
+    defaultValue: "00e7F0000021CEp"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/role"
+    remoteClaim:
+     claimUri: "ProfileId"
+   -
+    defaultValue: "America/Los_Angeles"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/challengeQuestion1"
+    remoteClaim:
+     claimUri: "TimeZoneSidKey"
+   -
+    defaultValue: "false"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/telephone"
+    remoteClaim:
+     claimUri: "UserPermissionsCallCenterAutoLogin"
+   -
+    defaultValue: "false"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/mobile"
+    remoteClaim:
+     claimUri: "UserPermissionsMarketingUser"
+   -
+    defaultValue: "false"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/country"
+    remoteClaim:
+     claimUri: "UserPermissionsOfflineUser"
+   -
+    defaultValue: "wso2demosuite@wso2.com"
+    isRequested: true
+    localClaim:
+     claimUri: "http://wso2.org/claims/emailaddress"
+    remoteClaim:
+     claimUri: "Username"
+  idpClaims:
+   -
+    claimUri: "Alias"
+   -
+    claimUri: "Email"
+   -
+    claimUri: "EmailEncodingKey"
+   -
+    claimUri: "LanguageLocaleKey"
+   -
+    claimUri: "LastName"
+   -
+    claimUri: "LocaleSidKey"
+   -
+    claimUri: "ProfileId"
+   -
+    claimUri: "TimeZoneSidKey"
+   -
+    claimUri: "UserPermissionsCallCenterAutoLogin"
+   -
+    claimUri: "UserPermissionsMarketingUser"
+   -
+    claimUri: "UserPermissionsOfflineUser"
+   -
+    claimUri: "Username"
+ provisioningConnectorConfigs:
+  -
+   isBlocking: false
+   isEnabled: true
+   name: "salesforce"
+   isRulesEnabled: false
+   isValid: false
+   isDefault: true
+   provisioningProperties:
+    -
+     name: "sf-domain-name"
+     value: "https://wso2demosuite-dev-ed.my.salesforce.com"
+    -
+     name: "sf-username"
+     value: "wso2demosuite@wso2.com"
+    -
+     name: "sf-api-version"
+     value: "41.0"
+    -
+     name: "sf-client-secret"
+     value: "4013380608199274322"
+    -
+     name: "sf-password"
+     value: "Samitha_2012XIPSw6bqoVQpdB9bkc6SzHw4I"
+    -
+     name: "sf-clientid"
+     value: "3MVG9d8..z.hDcPIgotHn.4NY8e0igXmwXzvrZ8raIHXfhCAdHnvWRpJV9dlGtqmzwxjcwsC2ow=="
+    -
+     name: "sf-token-endpoint"
+     value: "https://login.salesforce.com/services/oauth2/token"

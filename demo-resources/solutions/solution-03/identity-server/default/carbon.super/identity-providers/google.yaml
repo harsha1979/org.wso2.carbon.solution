@@ -1,0 +1,32 @@
+identityProvider:
+ alias: "https://localhost:9443/oauth2/token"
+ displayName: "Google-S3"
+ isEnable: true
+ identityProviderDescription: "GoogleIDP Desc Solution-03"
+ identityProviderName: "Google-S3"
+ claimConfig:
+  isAlwaysSendMappedLocalSubjectId: false
+  isLocalClaimDialect: true
+  roleClaimURI: "http://wso2.org/claims/role"
+ federatedAuthenticatorConfigs:
+   -
+    displayName: "Google"
+    isEnabled: true
+    name: "GoogleOIDCAuthenticator"
+    authenticatorProperties:
+     -
+      name: "callbackUrl"
+      value: "https://localhost:9443/commonauth"
+     -
+      name: "ClientSecret"
+      value: "BX9xQTNVu2Y3Y72I7SJZDhar"
+     -
+      name: "ClientId"
+      value: "816432807205-s0sii84ua9lbv9mkft604btqb8u00hos.apps.googleusercontent.com"
+     -
+      name: "AdditionalQueryParameters"
+      value: "scope=openid email profile"
+ justInTimeProvisioningConfig:
+  isDumbMode: false
+  isProvisioningEnabled: true
+  provisioningUserStore: "Google-S3"

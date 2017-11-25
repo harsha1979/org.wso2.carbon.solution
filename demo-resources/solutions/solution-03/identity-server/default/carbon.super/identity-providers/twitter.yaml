@@ -1,0 +1,29 @@
+identityProvider:
+ alias: "https://localhost:9443/oauth2/token"
+ displayName: "Twitter-S3"
+ isEnable: true
+ identityProviderDescription: "TwitterIDP Desc Solution-03"
+ identityProviderName: "Twitter-S3"
+ claimConfig:
+  isAlwaysSendMappedLocalSubjectId: false
+  isLocalClaimDialect: true
+  roleClaimURI: "http://wso2.org/claims/role"
+ federatedAuthenticatorConfigs:
+   -
+    displayName: "twitter"
+    isEnabled: true
+    name: "TwitterAuthenticator"
+    authenticatorProperties:
+     -
+      name: "callbackUrl"
+      value: "https://localhost:9443/commonauth"
+     -
+      name: "APIKey"
+      value: "4PamY1g4AmugfqL0w9YpXimJR"
+     -
+      name: "APISecret"
+      value: "yNx5PfOGAV40MRTN0a6CCHlgnpSZy8fsWnrJEGiC1FrjKPGBZQ"
+ justInTimeProvisioningConfig:
+  isDumbMode: false
+  isProvisioningEnabled: true
+  provisioningUserStore: "Twitter-S3"

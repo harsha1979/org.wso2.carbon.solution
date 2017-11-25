@@ -1,16 +1,16 @@
 solutionConfig:
   executionSteps:
     -
-      enable: true
+      action: "install"
       path: "identity-server/federation/carbon.super/service-providers/sample1.yaml"
     -
-      enable: true
+      action: "install"
       path: "identity-server/default/carbon.super/identity-providers/sample1.yaml"
     -
-      enable : true
+      action: "install"
       path: "identity-server/default/carbon.super/service-providers/sample1.yaml"
     -
-      enable: true
+      action: "install"
       path: "tomcat/default/webapps/travelocity.com"
   deployerDependencies:
     -

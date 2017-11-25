@@ -10,11 +10,15 @@ import java.io.File;
 
 public class TomcatInstaller extends Installer {
 
-    private static final String TOMCAT_SERVER = "tomcat-server";
+    private static final String TOMCAT_SERVER = "tomcat";
 
     @Override
-    public boolean canHandle(String path) {
-        return true;
+    public boolean canHandle(String path) throws CarbonSolutionException {
+        String serverName = getServerName(path);
+        if (TOMCAT_SERVER.equals(serverName)) {
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class ExecutionStep implements Serializable {
 
     private final static long serialVersionUID = 2178673577102053608L;
-    private boolean enable;
+    private String action;
     private String path;
 
     /**
@@ -20,11 +20,11 @@ public class ExecutionStep implements Serializable {
 
     /**
      * @param path
-     * @param enable
+     * @param action
      */
-    public ExecutionStep(boolean enable, String path) {
+    public ExecutionStep(String action, String path) {
         super();
-        this.enable = enable;
+        this.action = action;
         this.path = path;
     }
 
@@ -37,7 +37,7 @@ public class ExecutionStep implements Serializable {
             return false;
         }
         ExecutionStep rhs = ((ExecutionStep) other);
-        return new EqualsBuilder().append(path, rhs.path).append(enable, rhs.enable).isEquals();
+        return new EqualsBuilder().append(path, rhs.path).append(action, rhs.action).isEquals();
     }
 
     public String getPath() {
@@ -50,19 +50,19 @@ public class ExecutionStep implements Serializable {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(path).append(enable).toHashCode();
+        return new HashCodeBuilder().append(path).append(action).toHashCode();
     }
 
-    public boolean isEnable() {
-        return enable;
+    public String getAction() {
+        return action;
     }
 
-    public void setEnable(boolean enable) {
-        this.enable = enable;
+    public void setAction(String action) {
+        this.action = action;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("enable", enable).append("path", path).toString();
+        return new ToStringBuilder(this).append("action", action).append("path", path).toString();
     }
 }

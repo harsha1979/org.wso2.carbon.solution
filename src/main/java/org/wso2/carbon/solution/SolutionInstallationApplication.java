@@ -1,6 +1,6 @@
 package org.wso2.carbon.solution;
 
-
+import com.sforce.ws.*;
 import org.wso2.carbon.solution.util.Utility;
 
 import java.util.Arrays;
@@ -20,9 +20,11 @@ public class SolutionInstallationApplication {
 
         try {
             SolutionInstaller solutionInstaller = new SolutionInstaller();
-            solutionInstaller.install(Arrays.asList(new String[] { "solution-03" }));
-        } catch (CarbonSolutionException e) {
-
+            solutionInstaller.install(Arrays.asList(new String[] {"solution-04" }));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+
 }

@@ -1,0 +1,44 @@
+identityProvider:
+ alias: "https://localhost:9443/oauth2/token"
+ displayName: "Facebook-S3"
+ isEnable: true
+ identityProviderDescription: "Facebook Desc Solution 03"
+ identityProviderName: "Facebook-S3"
+ claimConfig:
+  isAlwaysSendMappedLocalSubjectId: false
+  isLocalClaimDialect: true
+  roleClaimURI: "http://wso2.org/claims/role"
+ federatedAuthenticatorConfigs:
+   -
+    displayName: "facebook"
+    isEnabled: true
+    name: "FacebookAuthenticator"
+    authenticatorProperties:
+     -
+      name: "callBackUrl"
+      value: "https://localhost:9443/commonauth"
+     -
+      name: "ClientId"
+      value: "acKaahsAxdFbz2dO7yabuwfMv"
+     -
+      name: "ClientSecret"
+      value: "BcKlnLdHzyt4Lh8y0AswA0dprjSKoHITJgrzyS7y7zWvblajPY"
+     -
+      name: "Scope"
+      value: "email"
+     -
+      name: "UserInfoEndpoint"
+      value: "https://graph.facebook.com/me"
+     -
+      name: "AuthTokenEndpoint"
+      value: "https://graph.facebook.com/oauth/access_token"
+     -
+      name: "UserInfoFields"
+      value: "id,email,name"
+     -
+      name: "AuthnEndpoint"
+      value: "http://www.facebook.com/dialog/oauth"
+ justInTimeProvisioningConfig:
+  isDumbMode: false
+  isProvisioningEnabled: true
+  provisioningUserStore: "Facebook-S3"

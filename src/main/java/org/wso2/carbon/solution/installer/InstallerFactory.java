@@ -2,6 +2,7 @@ package org.wso2.carbon.solution.installer;
 
 
 import org.wso2.carbon.solution.CarbonSolutionException;
+import org.wso2.carbon.solution.installer.impl.DatabaseServerInstaller;
 import org.wso2.carbon.solution.installer.impl.IdentityServerInstaller;
 import org.wso2.carbon.solution.installer.impl.TomcatInstaller;
 
@@ -16,6 +17,7 @@ public class InstallerFactory {
     private InstallerFactory() {
         installerRegistry.add(new IdentityServerInstaller());
         installerRegistry.add(new TomcatInstaller());
+        installerRegistry.add(new DatabaseServerInstaller());
     }
 
     public static InstallerFactory getInstance() {

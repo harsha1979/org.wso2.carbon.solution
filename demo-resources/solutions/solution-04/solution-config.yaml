@@ -1,18 +1,15 @@
 solutionConfig:
   executionSteps:
     -
-      enable : true
-      path: "identity-server/default/carbon.super/service-providers/sample1.yaml"
+      action: "install"
+      path: "identity-server/default/carbon.super/identity-providers/salesforce-provision.yaml"
     -
-      enable: true
-      path: "tomcat/default/webapps/playground2"
+      action: "install1"
+      path: "identity-server/default/carbon.super/service-providers/sample-sp.yaml"
     -
-      enable: true
+      action: "install1"
       path: "tomcat/default/webapps/travelocity.com"
   deployerDependencies:
     -
-      deployer: "tomcat/default/webapps/playground2"
-      dependency: "identity-server/default/carbon.super/service-providers/sample1.yaml"
-    -
       deployer: "tomcat/default/webapps/travelocity.com"
-      dependency: "identity-server/default/carbon.super/service-providers/sample1.yaml"
+      dependency: "identity-server/default/carbon.super/service-providers/sample-sp.yaml"

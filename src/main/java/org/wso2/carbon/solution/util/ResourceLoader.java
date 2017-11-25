@@ -1,6 +1,8 @@
 package org.wso2.carbon.solution.util;
 
 import org.wso2.carbon.solution.CarbonSolutionException;
+import org.wso2.carbon.solution.model.config.datasource.DataSourceConfigEntity;
+import org.wso2.carbon.solution.model.config.datasource.Datasource;
 import org.wso2.carbon.solution.model.config.server.Server;
 import org.wso2.carbon.solution.model.config.server.ServerConfigEntity;
 import org.wso2.carbon.solution.model.config.solution.SolutionConfig;
@@ -39,6 +41,13 @@ public class ResourceLoader {
                 .SOLUTION_CONFIG_FILE);
         SolutionConfigEntity solutionConfigEntity = loadResource(resourcePathObj, SolutionConfigEntity.class);
         return solutionConfigEntity.getSolutionConfig();
+    }
+
+    public static List<Datasource> getDataSourceConfig(String solution) throws CarbonSolutionException {
+        Path resourcePathObj = Paths.get(Utility.RESOURCE_HOME, Constant.SOLUTION_HOME, solution, Constant
+                .DATASOURCE_CONFIG_FILE);
+        DataSourceConfigEntity dataSourceConfigEntity = loadResource(resourcePathObj, DataSourceConfigEntity.class);
+        return dataSourceConfigEntity.getDatasources();
     }
 
     public static <T> T loadResource(String fileName, String resourcePath, Class<T> className)
@@ -98,7 +107,7 @@ public class ResourceLoader {
     public static void main(String[] args) {
         try {
             /*IdentityProvider identityProvider = loadResource(
-                    "sample1.yaml", "/home/harshat/wso2/demo-suite/project/org.wso2.carbon"
+                    "facebook.yaml", "/home/harshat/wso2/demo-suite/project/org.wso2.carbon"
                                    + ".solution/src/main/resources/samples",
                     IdentityProvider.class);*/
             Utility.RESOURCE_HOME = "/home/harshat/wso2/demo-suite/project/org.wso2.carbon.solution/demo-resources";

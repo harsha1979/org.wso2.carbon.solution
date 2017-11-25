@@ -201,7 +201,7 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
                                                 .OAuth2ApplicationConstants.CALLBACK_URL)) {
                                     oAuthConsumerAppDTO_dest.setCallbackUrl(property.getValue());
                                     updateProperty.put(identityServerArtifact.getArtifactFile()
-                                                       +"-CallbackURL", property.getValue());
+                                                       +"-OAUTH2-CallbackURL", property.getValue());
                                 }
                                 if (property.getName().equals(
                                         OAuth2ApplicationDeployer
@@ -265,16 +265,17 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
 
                             try {
                                 try {
-                                    OAuthConsumerAppDTO[] allOAuthApplicationData = IdentityServerAdminClient
+                                    OAuthConsumerAppDTO[] allOAuthApplicationData_server = IdentityServerAdminClient
                                             .getOAuthAdminService(server)
                                             .getAllOAuthApplicationData();
-                                    if (allOAuthApplicationData != null) {
-                                        for (OAuthConsumerAppDTO authConsumerAppDTO : allOAuthApplicationData) {
-                                            if (authConsumerAppDTO.getApplicationName()
+                                    if (allOAuthApplicationData_server != null) {
+                                        for (OAuthConsumerAppDTO authConsumerAppDTO_server :
+                                                allOAuthApplicationData_server) {
+                                            if (authConsumerAppDTO_server.getApplicationName()
                                                     .equals(oAuthConsumerAppDTO_dest.getApplicationName())) {
                                                 IdentityServerAdminClient
                                                         .getOAuthAdminService(server).removeOAuthApplicationData(
-                                                        oAuthConsumerAppDTO_dest.getOauthConsumerKey());
+                                                        authConsumerAppDTO_server.getOauthConsumerKey());
                                                 break;
                                             }
                                         }
@@ -285,11 +286,11 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
                                 IdentityServerAdminClient
                                         .getOAuthAdminService(server)
                                         .registerOAuthApplicationData(oAuthConsumerAppDTO_dest);
-                                OAuthConsumerAppDTO[] allOAuthApplicationData1 = IdentityServerAdminClient
+                                OAuthConsumerAppDTO[] allOAuthApplicationData_server = IdentityServerAdminClient
                                         .getOAuthAdminService(server)
                                         .getAllOAuthApplicationData();
-                                for (OAuthConsumerAppDTO oAuthConsumerAppDTO : allOAuthApplicationData1) {
-                                    if (oAuthConsumerAppDTO.getApplicationName().equals(oAuthConsumerAppDTO_dest
+                                for (OAuthConsumerAppDTO oAuthConsumerAppDTO_server : allOAuthApplicationData_server) {
+                                    if (oAuthConsumerAppDTO_server.getApplicationName().equals(oAuthConsumerAppDTO_dest
                                                                                                 .getApplicationName()
                                     )) {
                                         List<Property> newProperties = new ArrayList<Property>();
@@ -297,15 +298,15 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
                                         property.setName(
                                                 OAuth2ApplicationDeployer
                                                         .OAuth2ApplicationConstants.OAUTH_CONSUMER_SECRET);
-                                        property.setValue(oAuthConsumerAppDTO.getOauthConsumerSecret());
+                                        property.setValue(oAuthConsumerAppDTO_server.getOauthConsumerSecret());
                                         newProperties.add(property);
                                         inboundAuthenticationRequestConfig_source.setProperties(newProperties);
                                         inboundAuthenticationRequestConfig_source.setInboundAuthKey
-                                                (oAuthConsumerAppDTO.getOauthConsumerKey());
+                                                (oAuthConsumerAppDTO_server.getOauthConsumerKey());
                                         updateProperty.put(identityServerArtifact.getArtifactFile()
-                                                           +"-ConsumerKey", oAuthConsumerAppDTO.getOauthConsumerKey());
+                                                           +"-OAUTH2-ConsumerKey", oAuthConsumerAppDTO_server.getOauthConsumerKey());
                                         updateProperty.put(identityServerArtifact.getArtifactFile()
-                                                           +"-ConsumerSecret", oAuthConsumerAppDTO.getOauthConsumerSecret
+                                                           +"-OAUTH2-ConsumerSecret", oAuthConsumerAppDTO_server.getOauthConsumerSecret
                                                 ());
                                         break;
                                     }
@@ -321,34 +322,11 @@ public class ServiceProviderDeployer extends IdentityServerDeployer {
             }
 
             IdentityServer identityServer = new IdentityServer(server);
-            String authorizeEndpoint = "https://" + identityServer.getHost() ;
-            if(identityServer.getPort() > 0){
-                authorizeEndpoint += ":" + identityServer.getPort() ;
-            }
-            updateProperty.put(identityServerArtifact.getArtifactFile()
-                               +"-AuthorizeEndpoint", authorizeEndpoint + "/oauth2/authorize");
 
-            String accessTokenEndpoint = "https://" + identityServer.getHost() ;
-            if(identityServer.getPort() > 0){
-                accessTokenEndpoint += ":" + identityServer.getPort() ;
-            }
             updateProperty.put(identityServerArtifact.getArtifactFile()
-                               +"-AccessTokenEndpoint", accessTokenEndpoint + "/oauth2/token");
-
-            String logoutEndpoint = "https://" + identityServer.getHost() ;
-            if(identityServer.getPort() > 0){
-                logoutEndpoint += ":" + identityServer.getPort() ;
-            }
+                               +"-OAUTH2-IdentityServerHostName", identityServer.getHost());
             updateProperty.put(identityServerArtifact.getArtifactFile()
-                               +"-LogoutEndpoint", logoutEndpoint + "/oidc/logout");
-
-            String userInfo = "https://" + identityServer.getHost() ;
-            if(identityServer.getPort() > 0){
-                userInfo += ":" + identityServer.getPort() ;
-            }
-            updateProperty.put(identityServerArtifact.getArtifactFile()
-                               +"-UserInfoEndpoint", userInfo + "/oauth2/userinfo");
-
+                               +"-OAUTH2-IdentityServerPort", identityServer.getPort()+"");
 
             IdentityServerDeployer.updateProperty(identityServerArtifact,updateProperty);
         }

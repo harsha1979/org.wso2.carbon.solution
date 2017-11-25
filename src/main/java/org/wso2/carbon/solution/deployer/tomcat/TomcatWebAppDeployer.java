@@ -8,7 +8,6 @@ import org.wso2.carbon.solution.installer.impl.TomcatInstaller;
 import org.wso2.carbon.solution.model.config.server.Server;
 import org.wso2.carbon.solution.model.config.solution.DeployerDependency;
 import org.wso2.carbon.solution.model.config.solution.SolutionConfig;
-import org.wso2.carbon.solution.util.Constant;
 import org.wso2.carbon.solution.util.MultipartUtility;
 import org.wso2.carbon.solution.util.ResourceLoader;
 import org.wso2.carbon.solution.util.Utility;
@@ -56,7 +55,7 @@ public class TomcatWebAppDeployer {
                                                                                                  TRAVELOCITY + File
                 .separator +"travelocity.properties");
         try {
-            ZipUtility.unzip(Utility.getCommonResourceHome() + File.separator + TRAVELOCITY + ".war", outFolder
+            ZipUtility.unzip(Utility.getCommonWebAppHome() + File.separator + TRAVELOCITY + ".war", outFolder
                     .getAbsolutePath());
 
             FileUtils.copyFile(fileTravCityOrig,
@@ -137,7 +136,7 @@ public class TomcatWebAppDeployer {
                                          PLAYGROUND + File
                                                  .separator +"playground2.properties");
         try {
-            ZipUtility.unzip(Utility.getCommonResourceHome() + File.separator + PLAYGROUND + ".war", outFolder
+            ZipUtility.unzip(Utility.getCommonWebAppHome() + File.separator + PLAYGROUND + ".war", outFolder
                     .getAbsolutePath());
 
             FileUtils.copyFile(fileTravCityOrig,
@@ -180,7 +179,7 @@ public class TomcatWebAppDeployer {
 
             for (Map.Entry<Object, Object> objectEntry : spFileout.entrySet()) {
                 String key = (String)objectEntry.getKey() ;
-                String origKey = key.replace(associatedFile + "-", "");
+                String origKey = key.replace(associatedFile + "-OAUTH2-", "");
                 traveloctyOutFile.replace(origKey, objectEntry.getValue());
             }
 
@@ -202,9 +201,15 @@ public class TomcatWebAppDeployer {
     }
 
     private void deploy(String file,  Server server){
+
+
+
         TomcatServer tomcatServer = new TomcatServer(server);
         String charset = "UTF-8";
         File uploadFile1 = new File(file);
+
+        unDeploy(uploadFile1.getName(), server);
+
         String requestURL = tomcatServer.getHTTPServerURL() + "/manager/html/upload";
         try {
             MultipartUtility multipart = new MultipartUtility(requestURL, charset);
@@ -224,6 +229,24 @@ public class TomcatWebAppDeployer {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void unDeploy(String name,  Server server){
+        TomcatServer tomcatServer = new TomcatServer(server);
+        String charset = "UTF-8";
+        String requestURL = tomcatServer.getHTTPServerURL() + "/manager/html/undeploy?path=/"+ name.replace(".war","");
+        try {
+            MultipartUtility multipart = new MultipartUtility(requestURL, charset);
+            List<String> response = multipart.finish();
+            System.out.println("SERVER REPLIED:");
+            for (String line : response) {
+                System.out.println(line);
+            }
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }finally {
+
         }
     }
 }

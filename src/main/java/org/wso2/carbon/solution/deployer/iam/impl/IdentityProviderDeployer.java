@@ -47,12 +47,15 @@ public class IdentityProviderDeployer extends IdentityServerDeployer {
                         .buildIdentityProvider(identityProvider_source, identityProvider_dest);
 
                 try {
-                    IdentityServerAdminClient.getIdentityProviderMgtService(server)
-                            .deleteIdP(identityProvider_source.getIdentityProviderName());
+                    org.wso2.carbon.identity.application.common.model.idp.xsd.IdentityProvider idPByName
+                            = IdentityServerAdminClient.getIdentityProviderMgtService(server)
+                            .getIdPByName(identityProvider_source.getIdentityProviderName());
+                    if(idPByName == null) {
+                        IdentityServerAdminClient.getIdentityProviderMgtService(server).addIdP(identityProvider_dest);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                IdentityServerAdminClient.getIdentityProviderMgtService(server).addIdP(identityProvider_dest);
                 IdentityServerAdminClient.getIdentityProviderMgtService(server).updateIdP(identityProvider_dest
                                                                                                   .getIdentityProviderName(),
                                                                                           identityProvider_dest);
