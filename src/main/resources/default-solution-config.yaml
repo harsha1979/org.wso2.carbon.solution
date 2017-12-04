@@ -1,0 +1,24 @@
+solutionConfig:
+  executionSteps:
+    -
+      action: "install"
+      path: "database-server/h2-database/*"
+    -
+      action: "install"
+      path: "identity-server/default/carbon.super/user-stores/google.yaml"
+    -
+      action: "install"
+      path: "identity-server/default/carbon.super/identity-providers/salesforce-provision.yaml"
+    -
+      action: "install"
+      path: "identity-server/default/carbon.super/identity-providers/google-idp.yaml"
+    -
+      action: "install"
+      path: "identity-server/default/carbon.super/service-providers/sample-sp.yaml"
+    -
+      action: "install"
+      path: "tomcat/default/webapps/travelocity.com"
+  deployerDependencies:
+    -
+      deployer: "tomcat/default/webapps/travelocity.com"
+      dependency: "identity-server/default/carbon.super/service-providers/sample-sp.yaml"

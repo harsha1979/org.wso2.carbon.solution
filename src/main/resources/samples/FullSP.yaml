@@ -1,0 +1,78 @@
+serviceProvider:
+  id: 0
+  name: ""
+  description: ""
+  isSaasApp: false
+  claimConfiguration:
+    alwaysSendMappedLocalSubjectId: false
+    localClaimDialect: false
+    roleClaimURI: ""
+    userClaimURI: ""
+    claimMappings:
+      -
+        defaultValue: ""
+        isMandetory: false
+        isRequested: false
+        localClaim:
+          claimId: 7
+          claimUri: ""
+        remoteClaim:
+          claimId: 7
+          claimUri: ""
+  inboundAuthenticationConfig:
+    inboundAuthenticationRequestConfigs:
+      -
+        friendlyName: ""
+        inboundAuthKey: ""
+        inboundAuthType: ""
+        inboundConfigType: ""
+        properties:
+          -
+            name: ""
+            value: ""
+            type: ""
+            advanced: false
+            confidential: false
+            defaultValue: ""
+            description: ""
+            displayName: ""
+            displayOrder: 1
+            isRequired: false
+  inboundProvisioningConfig:
+    isDumbMode: false
+    isProvisioningEnabled: false
+    provisioningUserStore: ""
+  localAndOutBoundAuthenticationConfig:
+    isAlwaysSendBackAuthenticatedListOfIdPs: false
+    authenticationType: ""
+    isEnableAuthorization: false
+    subjectClaimUri: ""
+    isUseTenantDomainInLocalSubjectIdentifier: false
+    isUseUserstoreDomainInLocalSubjectIdentifier: false
+    authenticationSteps:
+      -
+        isAttributeStep: false
+        stepOrder: 1
+        isSubjectStep: false
+        federatedIdentityProviders:
+          -
+            identityProviderName: ""
+            federatedAuthenticatorConfigs:
+              -
+                name: ""
+        localAuthenticatorConfigs:
+          -
+            name: ""
+  outboundProvisioningConfig:
+    outboundProvisioningConnectors:
+     -
+      identityProviderName: "Salesforce-S3"
+      provisioningConnectorType: "salesforce"
+      jitEnable: true
+      enabled: false
+      blocking: false
+      rulesEnabled: false
+  owner:
+      tenantDomain: ""
+      userName: ""
+      userStoreDomain: ""

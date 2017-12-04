@@ -1,0 +1,86 @@
+identityProvider:
+ alias: "https://localhost:9443/oauth2/token"
+ displayName: "myidp1"
+ isEnable: true
+ identityProviderDescription: "sample1idpdesc2"
+ identityProviderName: "myidp1"
+ claimConfig:
+  isAlwaysSendMappedLocalSubjectId: false
+  isLocalClaimDialect: true
+  roleClaimURI: "http://wso2.org/claims/role"
+ federatedAuthenticatorConfigs:
+   -
+    displayName: "samlsso"
+    isEnabled: true
+    name: "SAMLSSOAuthenticator"
+    authenticatorProperties:
+     -
+      name: "IsLogoutReqSigned"
+      value: "false"
+     -
+      name: "IdPEntityId"
+      value: "idpentityid"
+     -
+      name: "SPEntityId"
+      value: "spentitiyID"
+     -
+      name: "NameIDType"
+      value: "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
+     -
+      name: "IncludeNameIDPolicy"
+      value: "false"
+     -
+      name: "IncludeProtocolBinding"
+      value: "false"
+     -
+      name: "ResponseAuthnContextClassRef"
+      value: "default"
+     -
+      name: "AuthnContextClassRef"
+      value: "Password Protected Transport"
+     -
+      name: "SSOUrl"
+      value: "https://localhost:9444/samlsso"
+     -
+      name: "LogoutReqUrl"
+      value: "dddddd"
+     -
+      name: "AuthnContextComparisonLevel"
+      value: "Exact"
+     -
+      name: "ForceAuthentication"
+      value: "as_request"
+     -
+      name: "IsAssertionEncrypted"
+      value: "true"
+     -
+      name: "isAssertionSigned"
+      value: "true"
+     -
+      name: "IncludeCert"
+      value: "false"
+     -
+      name: "IsAuthnRespSigned"
+      value: "false"
+     -
+      name: "IsUserIdInClaims"
+      value: "false"
+     -
+      name: "DigestAlgorithm"
+      value: "SHA1"
+     -
+      name: "IncludeAuthnContext"
+      value: "yes"
+
+     -
+      name: "SignatureAlgorithm"
+      value: "RSA with SHA1"
+     -
+      name: "IsLogoutEnabled"
+      value: "false"
+     -
+      name: "RequestMethod"
+      value: "redirect"
+     -
+      name: "ISAuthnReqSigned"
+      value: "true"

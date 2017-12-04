@@ -1,0 +1,38 @@
+serviceProvider:
+  name: "AAA4"
+  description: "dsfdsfdsfaaaaaaads"
+  inboundAuthenticationConfig:
+      inboundAuthenticationRequestConfigs:
+        -
+          friendlyName: "traelocityApp"
+          inboundAuthKey:
+          inboundAuthType: "oauth2"
+          properties:
+            -
+              name: "OAuthVersion"
+              value: "OAuth-2.0"
+            -
+              name: "applicationAccessTokenExpiryTime"
+              value: 3600
+            -
+              name: "applicationName"
+              value: "TestApp4"
+            -
+              name: "callbackUrl"
+              value: "http://dfdf//ffff"
+            -
+              name: "grantTypes"
+              value: "authorization_code implicit password client_credentials refresh_token
+              urn:ietf:params:oauth:grant-type:saml2-bearer urn:ietf:params:oauth:grant-type:jwt-bearer iwa:ntlm"
+            -
+              name: "pkceMandatory"
+              value: true
+            -
+              name: "pkceSupportPlain"
+              value: true
+            -
+              name: "refreshTokenExpiryTime"
+              value: 84600
+            -
+              name: "userAccessTokenExpiryTime"
+              value: 3600
